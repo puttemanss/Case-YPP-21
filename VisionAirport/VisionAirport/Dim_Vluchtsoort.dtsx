@@ -1,0 +1,415 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/26/2021 3:38:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="C9149825"
+  DTS:CreatorName="ORDINA\SaRu"
+  DTS:DTSID="{EF5E399F-DE16-484D-AE01-4B07D1F39335}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LocaleID="2067"
+  DTS:ObjectName="Dim_Vluchtsoort"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{EA172817-E2C0-4CFE-83F0-14235DD13EEE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{CB97675B-3B43-4552-86E7-590B16532DD0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW_Dim_Vliegtuigsoort"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_VluchtSoort]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Connections[OleDbConnection]"
+                  connectionManagerID="{FEC283CE-3A4B-4730-9520-9CFDDEE17BF1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].Columns[VliegtuigtypeId]"
+                      cachedDataType="i4"
+                      cachedName="VliegtuigtypeId"
+                      externalMetadataColumnId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].ExternalColumns[VluchtSoort_ID]"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].Columns[Type]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].ExternalColumns[Soort_vlucht]"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[Type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].ExternalColumns[VluchtSoort_ID]"
+                      dataType="i4"
+                      name="VluchtSoort_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input].ExternalColumns[Soort_vlucht]"
+                      dataType="wstr"
+                      length="100"
+                      name="Soort_vlucht" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLTP_Vliegtuigsoort"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLTP_Vliegtuigsoort"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[CLEANED].[Vliegtuigtype]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Connections[OleDbConnection]"
+                  connectionManagerID="{2929CA2B-B4C8-428E-81A9-B29ED62C8C2B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
+                      name="VliegtuigtypeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
+                      dataType="i4"
+                      name="VliegtuigtypeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
+                      dataType="wstr"
+                      length="50"
+                      name="IATA" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
+                      dataType="wstr"
+                      length="50"
+                      name="ICAO" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Merk]"
+                      dataType="wstr"
+                      length="50"
+                      name="Merk" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="100"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Wake]"
+                      dataType="wstr"
+                      length="50"
+                      name="Wake" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Cat]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cat" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Capaciteit]"
+                      dataType="i4"
+                      name="Capaciteit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output].ExternalColumns[Vracht]"
+                      dataType="i4"
+                      name="Vracht" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
+                      name="VliegtuigtypeId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      name="Type" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\DW_Dim_Vliegtuigsoort.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLTP_Vliegtuigsoort.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="246.214289813626,128.617648785502" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Data Flow Task\OLTP_Vliegtuigsoort"
+          TopLeft="457.857150654404,81.0588246662312" />
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\Data Flow Task\DW_Dim_Vliegtuigsoort"
+          TopLeft="447.857150484105,193.470590948646" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="543.657150569254,122.658824666231">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.8117662824148"
+              Start="0,0"
+              End="0,63.3117662824148">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.3117662824148" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLTP_Vliegtuigsoort">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DW_Dim_Vliegtuigsoort">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
