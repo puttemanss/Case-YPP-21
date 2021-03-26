@@ -2,13 +2,18 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>VisionAirport</Name>
-    <LastWriteTime>2021-03-26T10:21:46.0364577Z</LastWriteTime>
+    <LastWriteTime>2021-03-26T12:30:43.0365376Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>1Gate.dtsx</Name>
-      <LastWriteTime>2021-03-26T10:28:19.275604Z</LastWriteTime>
+      <LastWriteTime>2021-03-26T12:34:29.2274336Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>DimKalender.dtsx</Name>
+      <LastWriteTime>2021-03-26T12:26:50.2091843Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
