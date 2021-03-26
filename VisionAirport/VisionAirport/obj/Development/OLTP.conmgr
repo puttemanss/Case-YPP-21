@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="OLTP"
   DTS:DTSID="{2929CA2B-B4C8-428E-81A9-B29ED62C8C2B}"
@@ -7,6 +7,6 @@
     DTS:Name="ConnectionString">@[$Project::OLTP_ConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=.\SQL2019;Initial Catalog=VisionAirport_OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=C2519237\SQL2019;Initial Catalog=VisionAirport_OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

@@ -26,20 +26,21 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CP78718</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAi4NmAY0kwUGDupuqVVzlMAAAAAACAAAAAAAQZgAAAAEAACAAAADrovot/phmZk/v41tPpA9IiKPxq0hHM9zbF/0ObRJp2wAAAAAOgAAAAAIAACAAAADPVbhDh7mFB+LjAKiiFOtWxyGwucmCxla+NhONNzHqcJAAAAD5rFwAexHxP1B08YDVp2uCOvqSmRJS2SZjmyFrSNLtxZNm7a9NSbatix4n1cW2pNOeJAqegU4uOocF9pjwMsLgcUFXdJGxPXo/WAwHU85xQkeUJ8RGLv8i11VZmh2mMn3PoDWoQzj7QUg4mpFDOaR6fHat+YyqJha56WC3m/WFd2M51hQNZqK6yAQE1AuXFLZAAAAANmw69zLKg5xivNp0u5MitXN3aNJSqVrq+Ya4ELNup3X5+2YmteyjnvIcl5PyexVO7YxiLFqdGyb5klGBNGzPNA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjRDUXat05keauqeqtGPW8AAAAAACAAAAAAAQZgAAAAEAACAAAABU6MPCHxhx5V5sR0zifJGi1HvDGhwOPmGU1/VgqG6jugAAAAAOgAAAAAIAACAAAAA63m/BO8prdeu8dgyN9T7dclOPkDPJ4uXOW4UfyFwi8ZAAAAB5wc3AtQdm6NQ+IsDwghutjrbfe7smCuNKXMtr/YV0Y6UlT9m5mw91oObd5kL5m3efICxmHYJJ29OqEellrhuy/24d9IkWWdHXa0itCJk8AoCdh0uJQGH41xjV0lHkBTlYxKvBaajmn8wWsbTU1DZyXg/ClZsjord1q8yX7DxQTEkulBKAwT9J+asHjji/Pr1AAAAAWQtWS0SWAVdAIctPljrYyvM3efcjqJAY9iST5b5eRPjGY14HeA/liehDy0qrxH/Pf8jRpmvVndcH07+niU6Gxw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="1Gate.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="DimKalender.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Dim_Gate.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Dim_Kalender.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Package1.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
-          <SSIS:ConnectionManager SSIS:Name="DWH 1.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="OLTP 1.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="DWH.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="OLTP.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.DWH.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -54,7 +55,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.ConnectUsingManagedIdentity">
+            <SSIS:Parameter SSIS:Name="CM.DWH.ConnectUsingManagedIdentity">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -69,7 +70,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.DWH.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -84,7 +85,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.Password">
+            <SSIS:Parameter SSIS:Name="CM.DWH.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -98,7 +99,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.DWH.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -113,7 +114,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.DWH.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -124,11 +125,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">.\SQL2019</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C2519237\SQL2019</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DWH 1.UserName">
+            <SSIS:Parameter SSIS:Name="CM.DWH.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -142,7 +143,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -157,7 +158,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.ConnectUsingManagedIdentity">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.ConnectUsingManagedIdentity">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -172,7 +173,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -187,7 +188,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.Password">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -201,7 +202,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -216,7 +217,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -227,11 +228,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">.\SQL2019</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C2519237\SQL2019</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.OLTP 1.UserName">
+            <SSIS:Parameter SSIS:Name="CM.OLTP.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -247,16 +248,16 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="1Gate.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Dim_Gate.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{D914BB26-5AE8-4C32-B092-CAA8D7BD7313}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{0C10B9EA-C4B9-4D1C-BEE7-5A4CCC24CFEE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2E4F1B56-98F5-453D-A0C4-AB3220589321}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -264,16 +265,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="DimKalender.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Dim_Kalender.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{325D7EC9-F497-4043-8A53-CDE65D1647AD}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{FB503ADD-0D93-4EBB-91FE-E47D64F83538}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{468E5E77-BA11-468B-BAD0-65F781D3A21E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -399,6 +400,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Package1.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{839D3C86-14AE-411D-A668-C5C0DBF76B4C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F0BF419E-44E3-4EDE-9082-BC107E7B063A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
