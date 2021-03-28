@@ -1,0 +1,632 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/26/2021 3:51:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="C9149825"
+  DTS:CreatorName="ORDINA\SaRu"
+  DTS:DTSID="{2C36CBC7-206E-47B6-A443-D039452954C5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="2067"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{976A413F-ECF4-4B6C-AE66-AA87D2C7E6AC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add FK constraints Dim_Banen"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F258D1EB-EB58-4315-B79C-7FBB5404B9C7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add FK constraints Dim_Banen"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Banen FOREIGN KEY(Baan_ID) REFERENCES Dim_Banen(Baan_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Banen FOREIGN KEY(Baan_ID) REFERENCES Dim_Banen(Baan_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full Load Dim_Banen"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BE367DD3-E9CE-4D4B-AB9D-629AAF099B4F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full Load Dim_Banen"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Full Load Dim_Banen\DW Dim_Banen"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW Dim_Banen"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Banen]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Full Load Dim_Banen\DW Dim_Banen.Connections[OleDbConnection]"
+                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].Columns[Baannummer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Baannummer"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Baannummer]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Baannummer]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].Columns[Code]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Code"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Code]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].Columns[Naam]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Naam"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Naam]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Naam]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].Columns[Lengte]"
+                      cachedDataType="i4"
+                      cachedName="Lengte"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Lengte]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Lengte]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].Columns[BaanID]"
+                      cachedDataType="i4"
+                      cachedName="BaanID"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Banen_ID]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[BaanID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Baan_ID]"
+                      dataType="i4"
+                      name="Baan_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Baannummer]"
+                      dataType="i4"
+                      name="Baannummer" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Code]"
+                      dataType="wstr"
+                      length="50"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Naam]"
+                      dataType="wstr"
+                      length="50"
+                      name="Naam" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[Lengte]"
+                      dataType="i4"
+                      name="Lengte" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Banen_ID]"
+                      dataType="i4"
+                      name="OLTP_Banen_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Full Load Dim_Banen\DW Dim_Banen.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\DW Dim_Banen.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\DW Dim_Banen.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\DW Dim_Banen.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLTP CLEANED_Banen"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[CLEANED].[Banen]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Connections[OleDbConnection]"
+                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Baannummer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Baannummer]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Baannummer]"
+                      name="Baannummer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Code]"
+                      name="Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Naam]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Naam]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Naam]"
+                      name="Naam"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Lengte]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Lengte]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[Lengte]"
+                      name="Lengte"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[BaanID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[BaanID]"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].Columns[BaanID]"
+                      name="BaanID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Baannummer]"
+                      dataType="i4"
+                      name="Baannummer" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Code]"
+                      dataType="wstr"
+                      length="50"
+                      name="Code" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Naam]"
+                      dataType="wstr"
+                      length="50"
+                      name="Naam" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[Lengte]"
+                      dataType="i4"
+                      name="Lengte" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output].ExternalColumns[BaanID]"
+                      dataType="i4"
+                      name="BaanID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[BaanID]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[BaanID]"
+                      name="BaanID" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Baannummer]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Baannummer]"
+                      name="Baannummer" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Code]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Code]"
+                      name="Code" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Naam]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Naam]"
+                      name="Naam" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Lengte]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[Lengte]"
+                      name="Lengte" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Full Load Dim_Banen.Paths[OLE DB Source Output]"
+              endId="Package\Full Load Dim_Banen\DW Dim_Banen.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Full Load Dim_Banen\OLTP CLEANED_Banen.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove FK constraints Dim_Banen"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{91A093AE-9351-427C-A0D9-93EA5731FE95}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove FK constraints Dim_Banen"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_Banen&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Banen" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table Dim_Banen"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E1A30579-2628-485A-A387-45D113FBB07A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table Dim_Banen"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Banen&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{84716084-518C-4ED0-A323-00B46F005D86}"
+      DTS:From="Package\Remove FK constraints Dim_Banen"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Table Dim_Banen" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{71F18F3C-AFB3-4B9C-9E65-B96D52D8224D}"
+      DTS:From="Package\Truncate Table Dim_Banen"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Full Load Dim_Banen" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8D445F46-404A-4327-86E6-373925D01796}"
+      DTS:From="Package\Full Load Dim_Banen"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Add FK constraints Dim_Banen" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Add FK constraints Dim_Banen"
+          TopLeft="302.642861181376,295.676473816373" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Full Load Dim_Banen"
+          TopLeft="300.714290835419,217.941179527131" />
+        <NodeLayout
+          Size="172,60.8"
+          Id="Package\Remove FK constraints Dim_Banen"
+          TopLeft="300.500004512923,39.3235294653883" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Truncate Table Dim_Banen"
+          TopLeft="299.78571929737,133.970590037046" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="386.542861905147,100.123529465388">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.8470605716573"
+              Start="0,0"
+              End="0,26.3470605716573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.3470605716573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="387.250005066395,175.570590037046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.3705894900853"
+              Start="0,0"
+              End="0,34.8705894900853">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8705894900853" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="389.278576008398,259.541179527131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.1352942892426"
+              Start="0,0"
+              End="0,28.6352942892426">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6352942892426" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Full Load Dim_Banen">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Full Load Dim_Banen\OLTP CLEANED_Banen"
+          TopLeft="325.714291261167,155.235296294763" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Full Load Dim_Banen\DW Dim_Banen"
+          TopLeft="322.142862628917,259.235297753324" />
+        <EdgeLayout
+          Id="Package\Full Load Dim_Banen.Paths[OLE DB Source Output]"
+          TopLeft="407.728576945042,196.835296294763">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.400001458561"
+              Start="0,0"
+              End="0,54.900001458561">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.900001458561" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Banen\DW Dim_Banen">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Banen\OLTP CLEANED_Banen">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

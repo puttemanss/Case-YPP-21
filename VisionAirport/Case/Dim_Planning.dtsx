@@ -1,0 +1,722 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/26/2021 2:00:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="C2519237"
+  DTS:CreatorName="ORDINA\NiLn"
+  DTS:DTSID="{12408DA6-555D-4ABA-BA12-BEE9B41DA98B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{D518B45D-10E9-47D2-A559-38C9525E582E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6989783-7310-44D2-994A-10FDD546D747}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Dim_Planning</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add FK constraints Dim_Planning"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{583e0dfc-5455-4e90-9ad9-f715099a89a0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add FK constraints Dim_Planning"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Planning FOREIGN KEY(Planning_ID) REFERENCES Dim_Planning(Planning_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Planning FOREIGN KEY(Planning_ID) REFERENCES Dim_Planning(Planning_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full Load Dim_Planning"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{85edfbc2-b500-4dea-b827-13b97cb95be1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full Load Dim_Planning"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Full Load Dim_Planning\DW Dim_Planning"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DW Dim_Planning"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Planning]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Full Load Dim_Planning\DW Dim_Planning.Connections[OleDbConnection]"
+                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].Columns[Vluchtnr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Vluchtnr"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Vluchtnr]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Vluchtnr]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].Columns[Planterminal]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Planterminal"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_terminal]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Planterminal]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].Columns[Plangate]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Plangate"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_gate]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plangate]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].Columns[Plantijd]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="Plantijd"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_tijd]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plantijd]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].Columns[PlanningId]"
+                      cachedDataType="i4"
+                      cachedName="PlanningId"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Planning_ID]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[PlanningId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Planning_ID]"
+                      dataType="i4"
+                      name="Planning_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Planning_ID]"
+                      dataType="i4"
+                      name="OLTP_Planning_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Vluchtnr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Vluchtnr" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_terminal]"
+                      dataType="wstr"
+                      length="50"
+                      name="Plan_terminal" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_gate]"
+                      dataType="wstr"
+                      length="50"
+                      name="Plan_gate" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input].ExternalColumns[Plan_tijd]"
+                      dataType="dbTimeStamp2"
+                      name="Plan_tijd"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Full Load Dim_Planning\DW Dim_Planning.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\DW Dim_Planning.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\DW Dim_Planning.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\DW Dim_Planning.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLTP CLEANED_Planning"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[CLEANED].[Planning]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Connections[OleDbConnection]"
+                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[LuchthavenId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[LuchthavenId]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[LuchthavenId]"
+                      name="LuchthavenId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[PlanningId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[PlanningId]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[PlanningId]"
+                      name="PlanningId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Vluchtnr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Vluchtnr]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Vluchtnr]"
+                      name="Vluchtnr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Airlinecode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Airlinecode]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Airlinecode]"
+                      name="Airlinecode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Destcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Destcode]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Destcode]"
+                      name="Destcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Planterminal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Planterminal]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Planterminal]"
+                      name="Planterminal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plangate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Plangate]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plangate]"
+                      name="Plangate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plantijd]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Plantijd]"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].Columns[Plantijd]"
+                      name="Plantijd"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[LuchthavenId]"
+                      dataType="i4"
+                      name="LuchthavenId" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[PlanningId]"
+                      dataType="i4"
+                      name="PlanningId" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Vluchtnr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Vluchtnr" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Airlinecode]"
+                      dataType="wstr"
+                      length="50"
+                      name="Airlinecode" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Destcode]"
+                      dataType="wstr"
+                      length="50"
+                      name="Destcode" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Planterminal]"
+                      dataType="wstr"
+                      length="50"
+                      name="Planterminal" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Plangate]"
+                      dataType="wstr"
+                      length="50"
+                      name="Plangate" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output].ExternalColumns[Plantijd]"
+                      dataType="dbTimeStamp2"
+                      name="Plantijd"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[PlanningId]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[PlanningId]"
+                      name="PlanningId" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[LuchthavenId]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[LuchthavenId]"
+                      name="LuchthavenId" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Vluchtnr]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Vluchtnr]"
+                      name="Vluchtnr" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Airlinecode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Airlinecode]"
+                      name="Airlinecode" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Destcode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Destcode]"
+                      name="Destcode" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Planterminal]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Planterminal]"
+                      name="Planterminal" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Plangate]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Plangate]"
+                      name="Plangate" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Plantijd]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[Plantijd]"
+                      name="Plantijd"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Full Load Dim_Planning.Paths[OLE DB Source Output]"
+              endId="Package\Full Load Dim_Planning\DW Dim_Planning.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Full Load Dim_Planning\OLTP CLEANED_Planning.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Remove FK constraints Dim_Planning"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f49eb915-5174-4f97-9a5c-372b3088a408}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Remove FK constraints Dim_Planning"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_Planning&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Planning" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table Dim_Planning"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{849a9e82-2b7c-4aa0-b3b6-f13fa961f89d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table Dim_Planning"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Planning" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0de77001-3450-43c6-ae75-7d8401e32a1d}"
+      DTS:From="Package\Remove FK constraints Dim_Planning"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Table Dim_Planning" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{73d94424-bced-49f8-a429-3224ab6c0572}"
+      DTS:From="Package\Truncate Table Dim_Planning"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Full Load Dim_Planning" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4f345a47-2b0d-436d-bf3d-cfc140b1c7b0}"
+      DTS:From="Package\Full Load Dim_Planning"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Add FK constraints Dim_Planning" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Add FK constraints Dim_Planning"
+          TopLeft="62.857141884006,316.352944350985" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Full Load Dim_Planning"
+          TopLeft="60.928571538049,238.617650061743" />
+        <NodeLayout
+          Size="272.8,41.6"
+          Id="Package\Remove FK constraints Dim_Planning"
+          TopLeft="60.714285215553,60" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Truncate Table Dim_Planning"
+          TopLeft="60,154.647060571658" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="182.314285215553,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.514285215553,53.0470605716577"
+              Start="0,0"
+              End="-35.514285215553,45.5470605716577">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5235302858288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5235302858288"
+                    Point2="0,26.5235302858288"
+                    Point3="-4,26.5235302858288" />
+                  <mssgle:LineSegment
+                    End="-31.514285215553,26.5235302858288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.514285215553,26.5235302858288"
+                    Point2="-35.514285215553,26.5235302858288"
+                    Point3="-35.514285215553,30.5235302858288" />
+                  <mssgle:LineSegment
+                    End="-35.514285215553,45.5470605716577" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="147.464285769025,196.247060571658">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.3705894900853"
+              Start="0,0"
+              End="0,34.8705894900853">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8705894900853" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="149.492856711028,280.217650061743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.1352942892426"
+              Start="0,0"
+              End="0,28.6352942892426">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6352942892426" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Full Load Dim_Planning">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Full Load Dim_Planning\DW Dim_Planning"
+          TopLeft="322.142862628917,259.235297753324" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Full Load Dim_Planning\OLTP CLEANED_Planning"
+          TopLeft="325.714291261167,155.235296294763" />
+        <EdgeLayout
+          Id="Package\Full Load Dim_Planning.Paths[OLE DB Source Output]"
+          TopLeft="409.728576945042,196.835296294763">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.400001458561"
+              Start="0,0"
+              End="0,54.900001458561">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.900001458561" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Planning\DW Dim_Planning">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Planning\OLTP CLEANED_Planning">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
