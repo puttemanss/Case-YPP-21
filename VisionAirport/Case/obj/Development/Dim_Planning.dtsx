@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\NiLn"
   DTS:DTSID="{12408DA6-555D-4ABA-BA12-BEE9B41DA98B}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
   DTS:LocaleID="8192"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{D518B45D-10E9-47D2-A559-38C9525E582E}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{97AA86FC-6347-4B06-8BCE-91472D1B1F45}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -42,6 +42,23 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Planning FOREIGN KEY(Planning_ID) REFERENCES Dim_Planning(Planning_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Planning FOREIGN KEY(Planning_ID) REFERENCES Dim_Planning(Planning_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B45D7553-D981-4DE6-B6F9-64B1CC3F8188}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:SqlStatementSource="insert into dbo.Dim_Planning&#xA; &#x9;(OLTP_Planning_ID,&#xA;&#x9;Vluchtnr,&#xA;&#x9;Plan_terminal,&#xA;&#x9;Plan_gate,&#xA;&#x9;Plan_tijd)&#xA;values(-1,-1,-1,-1, null)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -531,11 +548,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{73d94424-bced-49f8-a429-3224ab6c0572}"
+      DTS:DTSID="{2FA42253-D432-4563-B744-0C2637B5C491}"
       DTS:From="Package\Truncate Table Dim_Planning"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Full Load Dim_Planning" />
+      DTS:To="Package\Execute SQL Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -544,6 +561,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Add FK constraints Dim_Planning" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AB868CB-8806-4468-A101-B5E07A3E96CC}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Full Load Dim_Planning" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -556,71 +581,37 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="176,41.6"
           Id="Package\Add FK constraints Dim_Planning"
-          TopLeft="62.857141884006,316.352944350985" />
+          TopLeft="53.9000000000001,411.9" />
         <NodeLayout
           Size="174.4,41.6"
           Id="Package\Full Load Dim_Planning"
-          TopLeft="60.928571538049,238.617650061743" />
+          TopLeft="54.7,310.3" />
         <NodeLayout
           Size="272.8,41.6"
           Id="Package\Remove FK constraints Dim_Planning"
-          TopLeft="60.714285215553,60" />
+          TopLeft="5.5,5.50000000000007" />
         <NodeLayout
           Size="173.6,41.6"
           Id="Package\Truncate Table Dim_Planning"
-          TopLeft="60,154.647060571658" />
+          TopLeft="55.1,107.1" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="182.314285215553,101.6">
+          TopLeft="141.9,47.1000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-35.514285215553,53.0470605716577"
+              EndConnector="0,60"
               Start="0,0"
-              End="-35.514285215553,45.5470605716577">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.5235302858288" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.5235302858288"
-                    Point2="0,26.5235302858288"
-                    Point3="-4,26.5235302858288" />
-                  <mssgle:LineSegment
-                    End="-31.514285215553,26.5235302858288" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-31.514285215553,26.5235302858288"
-                    Point2="-35.514285215553,26.5235302858288"
-                    Point3="-35.514285215553,30.5235302858288" />
-                  <mssgle:LineSegment
-                    End="-35.514285215553,45.5470605716577" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="147.464285769025,196.247060571658">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.3705894900853"
-              Start="0,0"
-              End="0,34.8705894900853">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,34.8705894900853" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -631,18 +622,66 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="149.492856711028,280.217650061743">
+          TopLeft="141.9,351.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.1352942892426"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,28.6352942892426">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.6352942892426" />
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="60.7,208.7" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="141.9,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="141.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -660,27 +699,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\Full Load Dim_Planning\DW Dim_Planning"
-          TopLeft="322.142862628917,259.235297753324" />
-        <NodeLayout
           Size="173.6,41.6"
           Id="Package\Full Load Dim_Planning\OLTP CLEANED_Planning"
-          TopLeft="325.714291261167,155.235296294763" />
+          TopLeft="5.50000000000001,5.49999999999995" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Full Load Dim_Planning\DW Dim_Planning"
+          TopLeft="7.50000000000001,107.1" />
         <EdgeLayout
           Id="Package\Full Load Dim_Planning.Paths[OLE DB Source Output]"
-          TopLeft="409.728576945042,196.835296294763">
+          TopLeft="92.3,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,62.400001458561"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,54.900001458561">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.900001458561" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
