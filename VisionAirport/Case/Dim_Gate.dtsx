@@ -11,8 +11,8 @@
   DTS:LocaleID="2067"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{B61F248B-9153-4B13-AFC1-46F7C37381A2}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{48A05BD8-B5AA-46DD-8D1C-862CD368F35B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -125,43 +125,21 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="212,41.6"
-          Id="Package\Truncate Table Dim_Gate"
-          TopLeft="319.199999829701,219.00000018232" />
+          Size="216,41.6"
+          Id="Package\Add FK constraints Dim_Gate"
+          TopLeft="313.485712996307,404.411766647055" />
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Generate Values Dim_Gate"
+          TopLeft="320.500005364418,299.147062941818" />
         <NodeLayout
           Size="211.2,60.8"
           Id="Package\Remove FK constraints Dim_Gate"
           TopLeft="321.342856498154,108.294115856032" />
         <NodeLayout
-          Size="216,41.6"
-          Id="Package\Add FK constraints Dim_Gate"
-          TopLeft="313.485712996307,404.411766647055" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="426.071428163928,169.094115856032">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49.905884326288"
-              Start="0,0"
-              End="0,42.405884326288">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.405884326288" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="210.4,41.6"
-          Id="Package\Generate Values Dim_Gate"
-          TopLeft="320.500005364418,299.147062941818" />
+          Size="212,41.6"
+          Id="Package\Truncate Table Dim_Gate"
+          TopLeft="319.199999829701,219.00000018232" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="425.45000259706,260.60000018232">
@@ -176,6 +154,28 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,31.0470627594984" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="426.071428163928,169.094115856032">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.905884326288"
+              Start="0,0"
+              End="0,42.405884326288">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.405884326288" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

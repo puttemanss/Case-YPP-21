@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>Case</Name>
-    <LastWriteTime>2021-04-02T07:53:23.7057427Z</LastWriteTime>
+    <LastWriteTime>2021-04-05T09:38:57.8710197Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,12 +13,12 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Planning.dtsx</Name>
-      <LastWriteTime>2021-04-02T13:09:38.5730777Z</LastWriteTime>
+      <LastWriteTime>2021-04-02T13:49:39.4286624Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Gate.dtsx</Name>
-      <LastWriteTime>2021-04-02T07:41:30.9993438Z</LastWriteTime>
+      <LastWriteTime>2021-04-09T07:48:36.4805244Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -33,7 +33,7 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Klant.dtsx</Name>
-      <LastWriteTime>2021-04-02T07:41:31.002343Z</LastWriteTime>
+      <LastWriteTime>2021-04-09T08:22:40.7444981Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -48,12 +48,17 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Master.dtsx</Name>
-      <LastWriteTime>2021-04-02T07:53:23.6747517Z</LastWriteTime>
+      <LastWriteTime>2021-04-02T13:49:39.4426637Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Fact_Aankomst.dtsx</Name>
-      <LastWriteTime>2021-04-02T13:30:53.3008159Z</LastWriteTime>
+      <LastWriteTime>2021-04-02T13:49:39.4396756Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Fact_Vertrek.dtsx</Name>
+      <LastWriteTime>2021-04-09T08:36:44.115765Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
