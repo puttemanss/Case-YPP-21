@@ -11,8 +11,8 @@
   DTS:LocaleID="2067"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{354DBDB3-11A1-4197-B1AC-E236859F1356}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{2C1ED9EB-E385-4BE0-A606-8C56AD516131}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -489,13 +489,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Vertrek.Outputs[OLE DB Source Output].Columns[Vertrektijd]})</property>
+                          name="Expression">[DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Vertrek.Outputs[OLE DB Source Output].Columns[Vertrektijd]}) &lt; -1000 ? 1440 + ([DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Vertrek.Outputs[OLE DB Source Output].Columns[Vertrektijd]})) : [DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Vertrek.Outputs[OLE DB Source Output].Columns[Vertrektijd]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">DATEDIFF("minute",(DT_DBTIME)Plan_tijd,(DT_DBTIME)Vertrektijd)</property>
+                          name="FriendlyExpression">DATEDIFF("minute",(DT_DBTIME)Plan_tijd,(DT_DBTIME)Vertrektijd) &lt; -1000 ? 1440 + (DATEDIFF("minute",(DT_DBTIME)Plan_tijd,(DT_DBTIME)Vertrektijd)) : DATEDIFF("minute",(DT_DBTIME)Plan_tijd,(DT_DBTIME)Vertrektijd)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2009,7 +2009,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\562:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\570:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2195,7 +2195,7 @@ where [refTable].[Soort_vlucht] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\563:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\571:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
