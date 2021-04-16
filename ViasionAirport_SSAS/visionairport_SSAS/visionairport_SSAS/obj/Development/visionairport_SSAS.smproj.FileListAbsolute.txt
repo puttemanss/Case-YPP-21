@@ -1,0 +1,7 @@
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\bin\Model.asdatabase
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\bin\Model.deploymenttargets
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\bin\Model.deploymentoptions
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\obj\Development\visionairport_SSAS.smproj.CoreCompileInputs.cache
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\obj\Development\Model.asdatabase
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\obj\Development\Model.deploymentoptions
+C:\Users\WoVa\OneDrive - Ordina\Documenten\GitHub\Case-YPP-21\ViasionAirport_SSAS\visionairport_SSAS\visionairport_SSAS\obj\Development\Model.deploymenttargets

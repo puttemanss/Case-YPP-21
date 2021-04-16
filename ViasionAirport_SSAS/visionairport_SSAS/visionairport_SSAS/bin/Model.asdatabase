@@ -1,0 +1,1225 @@
+{
+  "name": "visionairport_SSAS",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "nl-BE",
+    "dataSources": [
+      {
+        "name": "SqlServer C0942482SQL2019 VisionAirport_DW",
+        "connectionString": "Provider=SQLNCLI11;Data Source=C0942482\\SQL2019;Initial Catalog=VisionAirport_DW;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "ORDINA\\WoVa",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Dim_Banen",
+        "columns": [
+          {
+            "name": "Baan_ID",
+            "dataType": "int64",
+            "sourceColumn": "Baan_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Banen_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Banen_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Baannummer",
+            "dataType": "int64",
+            "sourceColumn": "Baannummer",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Code",
+            "dataType": "string",
+            "sourceColumn": "Code",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Naam",
+            "dataType": "string",
+            "sourceColumn": "Naam",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Lengte",
+            "dataType": "int64",
+            "sourceColumn": "Lengte",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Banen",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Banen].* FROM [dbo].[Dim_Banen] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Banen].* FROM [dbo].[Dim_Banen] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Banen"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Gate",
+        "columns": [
+          {
+            "name": "Gate_ID",
+            "dataType": "int64",
+            "sourceColumn": "Gate_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Terminal",
+            "dataType": "string",
+            "sourceColumn": "Terminal",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Gate",
+            "dataType": "string",
+            "sourceColumn": "Gate",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Gate",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Gate].* FROM [dbo].[Dim_Gate] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Gate].* FROM [dbo].[Dim_Gate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Gate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Kalender",
+        "columns": [
+          {
+            "name": "Kalender_ID",
+            "dataType": "int64",
+            "sourceColumn": "Kalender_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Datum_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Datum_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Weer_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Weer_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheDate",
+            "dataType": "dateTime",
+            "sourceColumn": "TheDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheDay",
+            "dataType": "int64",
+            "sourceColumn": "TheDay",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheDaySuffix",
+            "dataType": "string",
+            "sourceColumn": "TheDaySuffix",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TheDayName",
+            "dataType": "string",
+            "sourceColumn": "TheDayName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TheDayOfWeek",
+            "dataType": "int64",
+            "sourceColumn": "TheDayOfWeek",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheDayOfWeekInMonth",
+            "dataType": "int64",
+            "sourceColumn": "TheDayOfWeekInMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "TheDayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "TheDayOfYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "IsWeekend",
+            "dataType": "int64",
+            "sourceColumn": "IsWeekend",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheWeek",
+            "dataType": "int64",
+            "sourceColumn": "TheWeek",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheISOweek",
+            "dataType": "int64",
+            "sourceColumn": "TheISOweek",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheFirstOfWeek",
+            "dataType": "dateTime",
+            "sourceColumn": "TheFirstOfWeek",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheLastOfWeek",
+            "dataType": "dateTime",
+            "sourceColumn": "TheLastOfWeek",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheWeekOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "TheWeekOfMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "TheMonth",
+            "dataType": "int64",
+            "sourceColumn": "TheMonth",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheMonthName",
+            "dataType": "string",
+            "sourceColumn": "TheMonthName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TheFirstOfMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "TheFirstOfMonth",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheLastOfMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "TheLastOfMonth",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheFirstOfNextMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "TheFirstOfNextMonth",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheLastOfNextMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "TheLastOfNextMonth",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheQuarter",
+            "dataType": "int64",
+            "sourceColumn": "TheQuarter",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheFirstOfQuarter",
+            "dataType": "dateTime",
+            "sourceColumn": "TheFirstOfQuarter",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheLastOfQuarter",
+            "dataType": "dateTime",
+            "sourceColumn": "TheLastOfQuarter",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheYear",
+            "dataType": "int64",
+            "sourceColumn": "TheYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheISOYear",
+            "dataType": "int64",
+            "sourceColumn": "TheISOYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TheFirstOfYear",
+            "dataType": "dateTime",
+            "sourceColumn": "TheFirstOfYear",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "TheLastOfYear",
+            "dataType": "dateTime",
+            "sourceColumn": "TheLastOfYear",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "IsLeapYear",
+            "dataType": "boolean",
+            "sourceColumn": "IsLeapYear",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "Has53Weeks",
+            "dataType": "int64",
+            "sourceColumn": "Has53Weeks",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Has53ISOWeeks",
+            "dataType": "int64",
+            "sourceColumn": "Has53ISOWeeks",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "MMYYYY",
+            "dataType": "string",
+            "sourceColumn": "MMYYYY",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Style101",
+            "dataType": "string",
+            "sourceColumn": "Style101",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Style103",
+            "dataType": "string",
+            "sourceColumn": "Style103",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Style112",
+            "dataType": "string",
+            "sourceColumn": "Style112",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Style120",
+            "dataType": "string",
+            "sourceColumn": "Style120",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "EtmaalgemiddeldeWindsnelheid",
+            "dataType": "int64",
+            "sourceColumn": "EtmaalgemiddeldeWindsnelheid",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "HoogsteWindstoot",
+            "dataType": "int64",
+            "sourceColumn": "HoogsteWindstoot",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "EtmaalgemiddeldeTemperatuur",
+            "dataType": "int64",
+            "sourceColumn": "EtmaalgemiddeldeTemperatuur",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "MinimumTemperatuur",
+            "dataType": "int64",
+            "sourceColumn": "MinimumTemperatuur",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "EtmaalsomNeerslag",
+            "dataType": "int64",
+            "sourceColumn": "EtmaalsomNeerslag",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "MinimumOpgetredenZicht",
+            "dataType": "int64",
+            "sourceColumn": "MinimumOpgetredenZicht",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Kalender",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Kalender].* FROM [dbo].[Dim_Kalender] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Kalender].* FROM [dbo].[Dim_Kalender] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Kalender"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Klant",
+        "columns": [
+          {
+            "name": "Klant_ID",
+            "dataType": "int64",
+            "sourceColumn": "Klant_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Klant_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Klant_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "VluchtidNr",
+            "dataType": "string",
+            "sourceColumn": "VluchtidNr",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Operatie",
+            "dataType": "double",
+            "sourceColumn": "Operatie",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Faciliteiten",
+            "dataType": "double",
+            "sourceColumn": "Faciliteiten",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Shops",
+            "dataType": "double",
+            "sourceColumn": "Shops",
+            "sourceProviderType": "Double"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Klant",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Klant].* FROM [dbo].[Dim_Klant] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Klant].* FROM [dbo].[Dim_Klant] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Klant"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Luchthavens",
+        "columns": [
+          {
+            "name": "Luchthaven_ID",
+            "dataType": "int64",
+            "sourceColumn": "Luchthaven_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Luchthaven_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Luchthaven_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Luchthaven_Naam",
+            "dataType": "string",
+            "sourceColumn": "Luchthaven_Naam",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Stad",
+            "dataType": "string",
+            "sourceColumn": "Stad",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Land",
+            "dataType": "string",
+            "sourceColumn": "Land",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Luchthaven_IATA",
+            "dataType": "string",
+            "sourceColumn": "Luchthaven_IATA",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Luchthaven_ICAO",
+            "dataType": "string",
+            "sourceColumn": "Luchthaven_ICAO",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Latitude",
+            "dataType": "string",
+            "sourceColumn": "Latitude",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Longitude",
+            "dataType": "string",
+            "sourceColumn": "Longitude",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Altitude",
+            "dataType": "int64",
+            "sourceColumn": "Altitude",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TijdZone_Naam",
+            "dataType": "string",
+            "sourceColumn": "TijdZone_Naam",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TijdZone_VerschilUTC",
+            "dataType": "string",
+            "sourceColumn": "TijdZone_VerschilUTC",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Zomertijd",
+            "dataType": "string",
+            "sourceColumn": "Zomertijd",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Luchthavens",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Luchthavens].* FROM [dbo].[Dim_Luchthavens] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Luchthavens].* FROM [dbo].[Dim_Luchthavens] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Luchthavens"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Planning",
+        "columns": [
+          {
+            "name": "Planning_ID",
+            "dataType": "int64",
+            "sourceColumn": "Planning_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Planning_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Planning_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vluchtnr",
+            "dataType": "string",
+            "sourceColumn": "Vluchtnr",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Plan_terminal",
+            "dataType": "string",
+            "sourceColumn": "Plan_terminal",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Plan_gate",
+            "dataType": "string",
+            "sourceColumn": "Plan_gate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Plan_tijd",
+            "dataType": "dateTime",
+            "sourceColumn": "Plan_tijd",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Planning",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Planning].* FROM [dbo].[Dim_Planning] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Planning].* FROM [dbo].[Dim_Planning] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Planning"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Vliegtuig",
+        "columns": [
+          {
+            "name": "Vliegtuig_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vliegtuig_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Vliegtuig_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Vliegtuig_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Vliegtuigtype_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Vliegtuigtype_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Maatschapij_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Maatschapij_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vliegtuig_Code",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Code",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Bouwjaar",
+            "dataType": "int64",
+            "sourceColumn": "Vliegtuig_Bouwjaar",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vliegtuig_Merk",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Merk",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Type",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Type",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Type_IATA",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Type_IATA",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Type_ICAO",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Type_ICAO",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Categorie",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Categorie",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Vliegtuig_Wake",
+            "dataType": "string",
+            "sourceColumn": "Vliegtuig_Wake",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Capaciteit_Passagiers",
+            "dataType": "int64",
+            "sourceColumn": "Capaciteit_Passagiers",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Capaciteit_Vracht",
+            "dataType": "int64",
+            "sourceColumn": "Capaciteit_Vracht",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Maatschappij_Naam",
+            "dataType": "string",
+            "sourceColumn": "Maatschappij_Naam",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Maatschappij_IATA",
+            "dataType": "string",
+            "sourceColumn": "Maatschappij_IATA",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Maatschappij_ICAO",
+            "dataType": "string",
+            "sourceColumn": "Maatschappij_ICAO",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Vliegtuig",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Vliegtuig].* FROM [dbo].[Dim_Vliegtuig] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Vliegtuig].* FROM [dbo].[Dim_Vliegtuig] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Vliegtuig"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_VluchtSoort",
+        "columns": [
+          {
+            "name": "VluchtSoort_ID",
+            "dataType": "int64",
+            "sourceColumn": "VluchtSoort_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Soort_vlucht",
+            "dataType": "string",
+            "sourceColumn": "Soort_vlucht",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_VluchtSoort",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_VluchtSoort].* FROM [dbo].[Dim_VluchtSoort] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_VluchtSoort].* FROM [dbo].[Dim_VluchtSoort] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_VluchtSoort"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Fact_Aankomst",
+        "columns": [
+          {
+            "name": "Aankomst_ID",
+            "dataType": "int64",
+            "sourceColumn": "Aankomst_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Kalender_ID",
+            "dataType": "int64",
+            "sourceColumn": "Kalender_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Luchthaven_ID",
+            "dataType": "int64",
+            "sourceColumn": "Luchthaven_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vliegtuig_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vliegtuig_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Planning_ID",
+            "dataType": "int64",
+            "sourceColumn": "Planning_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Gate_ID",
+            "dataType": "int64",
+            "sourceColumn": "Gate_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Baan_ID",
+            "dataType": "int64",
+            "sourceColumn": "Baan_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "VluchtSoort_ID",
+            "dataType": "int64",
+            "sourceColumn": "VluchtSoort_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vlucht_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vlucht_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Aankomst_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Aankomst_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Bezetting",
+            "dataType": "int64",
+            "sourceColumn": "Bezetting",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vracht",
+            "dataType": "int64",
+            "sourceColumn": "Vracht",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Aankomsttijd",
+            "dataType": "dateTime",
+            "sourceColumn": "Aankomsttijd",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "BeschikbareBezetting",
+            "dataType": "int64",
+            "sourceColumn": "BeschikbareBezetting",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BeschikbareVracht",
+            "dataType": "int64",
+            "sourceColumn": "BeschikbareVracht",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vertraging",
+            "dataType": "int64",
+            "sourceColumn": "Vertraging",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Aankomst",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Fact_Aankomst].* FROM [dbo].[Fact_Aankomst] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Fact_Aankomst].* FROM [dbo].[Fact_Aankomst] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Fact_Aankomst"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Fact_Vertrek",
+        "columns": [
+          {
+            "name": "Vertrek_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vertrek_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Kalender_ID",
+            "dataType": "int64",
+            "sourceColumn": "Kalender_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Luchthaven_ID",
+            "dataType": "int64",
+            "sourceColumn": "Luchthaven_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vliegtuig_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vliegtuig_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Planning_ID",
+            "dataType": "int64",
+            "sourceColumn": "Planning_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Gate_ID",
+            "dataType": "int64",
+            "sourceColumn": "Gate_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Baan_ID",
+            "dataType": "int64",
+            "sourceColumn": "Baan_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "VluchtSoort_ID",
+            "dataType": "int64",
+            "sourceColumn": "VluchtSoort_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Klant_ID",
+            "dataType": "int64",
+            "sourceColumn": "Klant_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vlucht_ID",
+            "dataType": "int64",
+            "sourceColumn": "Vlucht_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OLTP_Vertrek_ID",
+            "dataType": "int64",
+            "sourceColumn": "OLTP_Vertrek_ID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Bezetting",
+            "dataType": "int64",
+            "sourceColumn": "Bezetting",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vracht",
+            "dataType": "int64",
+            "sourceColumn": "Vracht",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vertrektijd",
+            "dataType": "dateTime",
+            "sourceColumn": "Vertrektijd",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "BeschikbareBezetting",
+            "dataType": "int64",
+            "sourceColumn": "BeschikbareBezetting",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BeschikbareVracht",
+            "dataType": "int64",
+            "sourceColumn": "BeschikbareVracht",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Vertraging",
+            "dataType": "int64",
+            "sourceColumn": "Vertraging",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Vertrek",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Fact_Vertrek].* FROM [dbo].[Fact_Vertrek] ",
+              "dataSource": "SqlServer C0942482SQL2019 VisionAirport_DW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Fact_Vertrek].* FROM [dbo].[Fact_Vertrek] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Fact_Vertrek"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "2e8a3778-af48-47ae-b633-1c681b11b54a",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Gate_ID",
+        "toTable": "Dim_Gate",
+        "toColumn": "Gate_ID"
+      },
+      {
+        "name": "56a8a883-0932-4f33-a0e1-e91fb7ea9a59",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Kalender_ID",
+        "toTable": "Dim_Kalender",
+        "toColumn": "Kalender_ID"
+      },
+      {
+        "name": "88f7f9df-5303-4e9e-904c-fe5e477761df",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Luchthaven_ID",
+        "toTable": "Dim_Luchthavens",
+        "toColumn": "Luchthaven_ID"
+      },
+      {
+        "name": "d97bb73d-6cab-4e32-a5e9-0689663f6f53",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Planning_ID",
+        "toTable": "Dim_Planning",
+        "toColumn": "Planning_ID"
+      },
+      {
+        "name": "fa1ab7ae-b386-48a2-9b76-e4db61f8ad56",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Vliegtuig_ID",
+        "toTable": "Dim_Vliegtuig",
+        "toColumn": "Vliegtuig_ID"
+      },
+      {
+        "name": "b659f8bf-ff18-44f5-a2cf-105cab7382cb",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "VluchtSoort_ID",
+        "toTable": "Dim_VluchtSoort",
+        "toColumn": "VluchtSoort_ID"
+      },
+      {
+        "name": "800a59f3-76a5-4136-8681-9ab860d447d1",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Baan_ID",
+        "toTable": "Dim_Banen",
+        "toColumn": "Baan_ID"
+      },
+      {
+        "name": "98ba9d02-f008-44b6-aae1-b9afa1ddf9cd",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Kalender_ID",
+        "toTable": "Dim_Kalender",
+        "toColumn": "Kalender_ID"
+      },
+      {
+        "name": "40f50e59-b3b8-420b-9787-efb96a4c45b5",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Luchthaven_ID",
+        "toTable": "Dim_Luchthavens",
+        "toColumn": "Luchthaven_ID"
+      },
+      {
+        "name": "c34a66a1-8949-46c7-9882-6f655f5d6f23",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Planning_ID",
+        "toTable": "Dim_Planning",
+        "toColumn": "Planning_ID"
+      },
+      {
+        "name": "87011e3b-f161-4997-85ff-0153f044000a",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Vliegtuig_ID",
+        "toTable": "Dim_Vliegtuig",
+        "toColumn": "Vliegtuig_ID"
+      },
+      {
+        "name": "5f317314-dc72-4bc6-b8da-32a9ec11ea8d",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "VluchtSoort_ID",
+        "toTable": "Dim_VluchtSoort",
+        "toColumn": "VluchtSoort_ID"
+      },
+      {
+        "name": "68ab2cb1-d6d1-45d2-a25e-986dec455249",
+        "fromTable": "Fact_Aankomst",
+        "fromColumn": "Baan_ID",
+        "toTable": "Dim_Banen",
+        "toColumn": "Baan_ID"
+      },
+      {
+        "name": "c45f3725-5c7f-4260-b82f-422093e9c999",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Gate_ID",
+        "toTable": "Dim_Gate",
+        "toColumn": "Gate_ID"
+      },
+      {
+        "name": "afd4d17b-9da1-4f19-a4a8-4ff10f0c2ca5",
+        "fromTable": "Fact_Vertrek",
+        "fromColumn": "Klant_ID",
+        "toTable": "Dim_Klant",
+        "toColumn": "Klant_ID"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  }
+}
