@@ -6,9 +6,9 @@
     "dataSources": [
       {
         "name": "SqlServer C0942482SQL2019 VisionAirport_DW",
-        "connectionString": "Provider=SQLNCLI11;Data Source=C0942482\\SQL2019;Initial Catalog=VisionAirport_DW;Integrated Security=SSPI;Persist Security Info=false",
+        "connectionString": "Provider=SQLNCLI11;Data Source=.\\SQL2019;Initial Catalog=VisionAirport_DW;Integrated Security=SSPI;Persist Security Info=false",
         "impersonationMode": "impersonateAccount",
-        "account": "ORDINA\\WoVa",
+        "account": "ORDINA\\SaRu",
         "annotations": [
           {
             "name": "ConnectionEditUISource",
@@ -19,7 +19,7 @@
     ],
     "tables": [
       {
-        "name": "Dim_Banen",
+        "name": "Dim_Banen 1",
         "columns": [
           {
             "name": "Baan_ID",
@@ -60,7 +60,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Banen",
+            "name": "Dim_Banen 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -85,7 +85,7 @@
         ]
       },
       {
-        "name": "Dim_Gate",
+        "name": "Dim_Gate 1",
         "columns": [
           {
             "name": "Gate_ID",
@@ -108,7 +108,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Gate",
+            "name": "Dim_Gate 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -133,7 +133,7 @@
         ]
       },
       {
-        "name": "Dim_Kalender",
+        "name": "Dim_Kalender 1",
         "columns": [
           {
             "name": "Kalender_ID",
@@ -408,7 +408,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Kalender",
+            "name": "Dim_Kalender 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -433,7 +433,7 @@
         ]
       },
       {
-        "name": "Dim_Klant",
+        "name": "Dim_Klant 1",
         "columns": [
           {
             "name": "Klant_ID",
@@ -474,7 +474,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Klant",
+            "name": "Dim_Klant 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -499,7 +499,7 @@
         ]
       },
       {
-        "name": "Dim_Luchthavens",
+        "name": "Dim_Luchthavens 1",
         "columns": [
           {
             "name": "Luchthaven_ID",
@@ -582,7 +582,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Luchthavens",
+            "name": "Dim_Luchthavens 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -607,7 +607,7 @@
         ]
       },
       {
-        "name": "Dim_Planning",
+        "name": "Dim_Planning 1",
         "columns": [
           {
             "name": "Planning_ID",
@@ -649,7 +649,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Planning",
+            "name": "Dim_Planning 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -674,7 +674,7 @@
         ]
       },
       {
-        "name": "Dim_Vliegtuig",
+        "name": "Dim_Vliegtuig 1",
         "columns": [
           {
             "name": "Vliegtuig_ID",
@@ -781,7 +781,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_Vliegtuig",
+            "name": "Dim_Vliegtuig 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -806,7 +806,7 @@
         ]
       },
       {
-        "name": "Dim_VluchtSoort",
+        "name": "Dim_VluchtSoort 1",
         "columns": [
           {
             "name": "VluchtSoort_ID",
@@ -823,7 +823,7 @@
         ],
         "partitions": [
           {
-            "name": "Dim_VluchtSoort",
+            "name": "Dim_VluchtSoort 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -848,7 +848,7 @@
         ]
       },
       {
-        "name": "Fact_Aankomst",
+        "name": "Fact_Aankomst 1",
         "columns": [
           {
             "name": "Aankomst_ID",
@@ -950,7 +950,7 @@
         ],
         "partitions": [
           {
-            "name": "Fact_Aankomst",
+            "name": "Fact_Aankomst 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -975,7 +975,7 @@
         ]
       },
       {
-        "name": "Fact_Vertrek",
+        "name": "Fact_Vertrek 1",
         "columns": [
           {
             "name": "Vertrek_ID",
@@ -1083,7 +1083,7 @@
         ],
         "partitions": [
           {
-            "name": "Fact_Vertrek",
+            "name": "Fact_Vertrek 1",
             "dataView": "full",
             "source": {
               "type": "query",
@@ -1110,108 +1110,108 @@
     ],
     "relationships": [
       {
-        "name": "2e8a3778-af48-47ae-b633-1c681b11b54a",
-        "fromTable": "Fact_Aankomst",
+        "name": "df6531de-2c92-4d27-aa4f-af14e1366842",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Gate_ID",
-        "toTable": "Dim_Gate",
+        "toTable": "Dim_Gate 1",
         "toColumn": "Gate_ID"
       },
       {
-        "name": "56a8a883-0932-4f33-a0e1-e91fb7ea9a59",
-        "fromTable": "Fact_Aankomst",
+        "name": "8167241c-431b-4c67-880d-19ae05882f84",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Kalender_ID",
-        "toTable": "Dim_Kalender",
+        "toTable": "Dim_Kalender 1",
         "toColumn": "Kalender_ID"
       },
       {
-        "name": "88f7f9df-5303-4e9e-904c-fe5e477761df",
-        "fromTable": "Fact_Aankomst",
+        "name": "c59b9268-a25f-41f6-b64b-751d2d83d0d9",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Luchthaven_ID",
-        "toTable": "Dim_Luchthavens",
+        "toTable": "Dim_Luchthavens 1",
         "toColumn": "Luchthaven_ID"
       },
       {
-        "name": "d97bb73d-6cab-4e32-a5e9-0689663f6f53",
-        "fromTable": "Fact_Aankomst",
+        "name": "68d36039-ba48-4b36-9d60-6d37d43cb357",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Planning_ID",
-        "toTable": "Dim_Planning",
+        "toTable": "Dim_Planning 1",
         "toColumn": "Planning_ID"
       },
       {
-        "name": "fa1ab7ae-b386-48a2-9b76-e4db61f8ad56",
-        "fromTable": "Fact_Aankomst",
+        "name": "0802c276-86c7-4272-8881-76735c0cb62b",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Vliegtuig_ID",
-        "toTable": "Dim_Vliegtuig",
+        "toTable": "Dim_Vliegtuig 1",
         "toColumn": "Vliegtuig_ID"
       },
       {
-        "name": "b659f8bf-ff18-44f5-a2cf-105cab7382cb",
-        "fromTable": "Fact_Aankomst",
+        "name": "ab1f6b92-c049-4fec-99a7-5b972fc5fea7",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "VluchtSoort_ID",
-        "toTable": "Dim_VluchtSoort",
+        "toTable": "Dim_VluchtSoort 1",
         "toColumn": "VluchtSoort_ID"
       },
       {
-        "name": "800a59f3-76a5-4136-8681-9ab860d447d1",
-        "fromTable": "Fact_Vertrek",
+        "name": "e846a728-b378-4928-8bd0-b8e131c8cdf6",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Baan_ID",
-        "toTable": "Dim_Banen",
+        "toTable": "Dim_Banen 1",
         "toColumn": "Baan_ID"
       },
       {
-        "name": "98ba9d02-f008-44b6-aae1-b9afa1ddf9cd",
-        "fromTable": "Fact_Vertrek",
+        "name": "9b6fd9b4-9fbb-4ce9-84aa-e2fb4efab049",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Kalender_ID",
-        "toTable": "Dim_Kalender",
+        "toTable": "Dim_Kalender 1",
         "toColumn": "Kalender_ID"
       },
       {
-        "name": "40f50e59-b3b8-420b-9787-efb96a4c45b5",
-        "fromTable": "Fact_Vertrek",
+        "name": "7c38674c-0f50-4bbb-82ed-12475917a5c0",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Luchthaven_ID",
-        "toTable": "Dim_Luchthavens",
+        "toTable": "Dim_Luchthavens 1",
         "toColumn": "Luchthaven_ID"
       },
       {
-        "name": "c34a66a1-8949-46c7-9882-6f655f5d6f23",
-        "fromTable": "Fact_Vertrek",
+        "name": "76cdfa77-2367-4721-bd67-20dbe8e1f1f0",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Planning_ID",
-        "toTable": "Dim_Planning",
+        "toTable": "Dim_Planning 1",
         "toColumn": "Planning_ID"
       },
       {
-        "name": "87011e3b-f161-4997-85ff-0153f044000a",
-        "fromTable": "Fact_Vertrek",
+        "name": "a7596ab8-aff4-4ffa-9e74-ce6968e9bfe7",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Vliegtuig_ID",
-        "toTable": "Dim_Vliegtuig",
+        "toTable": "Dim_Vliegtuig 1",
         "toColumn": "Vliegtuig_ID"
       },
       {
-        "name": "5f317314-dc72-4bc6-b8da-32a9ec11ea8d",
-        "fromTable": "Fact_Vertrek",
+        "name": "69b2c8e5-32e0-4bf9-8ec1-a310dea36557",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "VluchtSoort_ID",
-        "toTable": "Dim_VluchtSoort",
+        "toTable": "Dim_VluchtSoort 1",
         "toColumn": "VluchtSoort_ID"
       },
       {
-        "name": "68ab2cb1-d6d1-45d2-a25e-986dec455249",
-        "fromTable": "Fact_Aankomst",
+        "name": "a45a3c77-7721-4e59-9efe-ae360631f364",
+        "fromTable": "Fact_Aankomst 1",
         "fromColumn": "Baan_ID",
-        "toTable": "Dim_Banen",
+        "toTable": "Dim_Banen 1",
         "toColumn": "Baan_ID"
       },
       {
-        "name": "c45f3725-5c7f-4260-b82f-422093e9c999",
-        "fromTable": "Fact_Vertrek",
+        "name": "408bef0e-23f7-4d00-bb4e-58dca557a1f3",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Gate_ID",
-        "toTable": "Dim_Gate",
+        "toTable": "Dim_Gate 1",
         "toColumn": "Gate_ID"
       },
       {
-        "name": "afd4d17b-9da1-4f19-a4a8-4ff10f0c2ca5",
-        "fromTable": "Fact_Vertrek",
+        "name": "473b2005-85cb-4b1e-9d3a-0580f1c453b1",
+        "fromTable": "Fact_Vertrek 1",
         "fromColumn": "Klant_ID",
-        "toTable": "Dim_Klant",
+        "toTable": "Dim_Klant 1",
         "toColumn": "Klant_ID"
       }
     ],

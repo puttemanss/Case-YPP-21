@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\SaRu"
   DTS:DTSID="{9314DF71-BDBF-465C-A846-02B9B92694E3}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
   DTS:LocaleID="2067"
   DTS:ObjectName="Dim_Klant"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{C451A971-C8F1-4225-84FC-E51967B38278}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{BC936DA1-7A22-4966-9886-43014A31E6F4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -161,6 +161,12 @@
                       cachedName="KlantId"
                       externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Klant_ID]"
                       lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[KlantId]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[VluchtidNR]"
+                      cachedDataType="i4"
+                      cachedName="VluchtidNR"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[VluchtidNr]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtidNR]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -510,9 +516,13 @@
           Id="Package\Add FK constraints Dim_Klant"
           TopLeft="5.50000000000004,431.1" />
         <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="11.1,227.9" />
+        <NodeLayout
           Size="174.4,41.6"
           Id="Package\Full Load Dim_Klant"
-          TopLeft="6.30000000000004,329.5" />
+          TopLeft="6.30000000000004,330.264705893078" />
         <NodeLayout
           Size="172,60.8"
           Id="Package\Remove FK constraints Dim_Klant"
@@ -544,32 +554,6 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="93.5,371.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Execute SQL Task"
-          TopLeft="11.1,227.9" />
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="93.5,167.9">
           <EdgeLayout.Curve>
@@ -592,19 +576,41 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="93.5,371.864705893078">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.2352941069224"
+              Start="0,0"
+              End="0,51.7352941069224">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.7352941069224" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="93.5,269.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60.7647058930776"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,53.2647058930776">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,53.2647058930776" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -622,16 +628,16 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Full Load Dim_Klant\DW Dim_Klant"
+          TopLeft="322.857148355367,259.235297753324" />
+        <NodeLayout
           Size="165.6,41.6"
           Id="Package\Full Load Dim_Klant\OLTP CLEANED_Klant"
           TopLeft="325.714291261167,155.235296294763" />
-        <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\Full Load Dim_Klant\DW Dim_Klant"
-          TopLeft="322.142862628917,259.235297753324" />
         <EdgeLayout
           Id="Package\Full Load Dim_Klant.Paths[OLE DB Source Output]"
-          TopLeft="407.728576945042,196.835296294763">
+          TopLeft="408.085719808267,196.835296294763">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
