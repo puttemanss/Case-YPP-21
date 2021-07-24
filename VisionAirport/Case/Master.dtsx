@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\SaRu"
   DTS:DTSID="{0AFD3EAF-903C-4EC1-81F8-7D292188A9A1}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="2067"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{DF684FF7-D5B6-4A0D-A6B8-CFB855BA626F}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{CEF5D001-A954-40AC-ABEA-689412A55730}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -180,23 +180,6 @@
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container\Execute Dim_Vluchtsoort"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Execute Package Task"
-          DTS:DTSID="{77AEA776-C163-44EF-913F-447CBC1A9BF0}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute Dim_Vluchtsoort"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Dim_VluchtSoort.dtsx</PackageName>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -231,6 +214,14 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Execute Fact_Aankomst"
+          TopLeft="853.9,211.1" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Execute Fact_Vertrek"
+          TopLeft="860.3,312.7" />
+        <NodeLayout
           Size="172.8,41.6"
           Id="Package\Sequence Container\Execute Dim_Banen"
           TopLeft="5.50000000000009,5.49999999999995" />
@@ -239,29 +230,25 @@
           Id="Package\Sequence Container\Execute Dim_Gate"
           TopLeft="238.5,5.49999999999995" />
         <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Sequence Container\Execute Dim_Klant"
-          TopLeft="464.3,5.49999999999984" />
-        <NodeLayout
           Size="184,41.6"
           Id="Package\Sequence Container\Execute Dim_Kalender"
           TopLeft="691.9,5.49999999999984" />
         <NodeLayout
-          Size="196,41.6"
-          Id="Package\Sequence Container\Execute Dim_Vluchtsoort"
-          TopLeft="936.9,5.49999999999984" />
+          Size="167.2,41.6"
+          Id="Package\Sequence Container\Execute Dim_Klant"
+          TopLeft="464.3,5.49999999999984" />
         <NodeLayout
           Size="201.6,41.6"
           Id="Package\Sequence Container\Execute Dim_Luchthavens"
           TopLeft="1193.1,5.49999999999984" />
         <NodeLayout
-          Size="184,41.6"
-          Id="Package\Sequence Container\Execute Dim_Vliegtuig"
-          TopLeft="1454.9,5.49999999999973" />
-        <NodeLayout
           Size="183.2,41.6"
           Id="Package\Sequence Container\Execute Dim_Planning"
           TopLeft="1699.3,5.49999999999973" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Sequence Container\Execute Dim_Vliegtuig"
+          TopLeft="1454.9,5.49999999999973" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -269,14 +256,6 @@
           Size="1888,145.6"
           Id="Package\Sequence Container"
           TopLeft="5.5,5.49999999999996" />
-        <NodeLayout
-          Size="191.2,41.6"
-          Id="Package\Execute Fact_Aankomst"
-          TopLeft="853.9,211.1" />
-        <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\Execute Fact_Vertrek"
-          TopLeft="860.3,312.7" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="949.5,151.1">

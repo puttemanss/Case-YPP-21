@@ -7,12 +7,12 @@
   DTS:CreatorName="GENTGRP\puttemsa"
   DTS:DTSID="{79B98E2A-48F8-4D7F-954D-61DD300E0B55}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="2067"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{48A05BD8-B5AA-46DD-8D1C-862CD368F35B}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{05B2CE26-B597-44D4-9B82-07EB9F9CBDF0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Gate FOREIGN KEY(Gate_ID) REFERENCES Dim_Gate(Gate_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Gate FOREIGN KEY(Gate_ID) REFERENCES Dim_Gate(Gate_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -47,7 +47,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{0B5E5886-AE61-4176-AA5E-6F5A102074F1}"
           SQLTask:SqlStatementSource="INSERT INTO dbo.Dim_Gate(Terminal, Gate)&#xA;VALUES&#xA;&#x9;('A','A1'),&#xA;&#x9;('A','A2'),&#xA;&#x9;('A','A3'),&#xA;&#x9;('A','A4'),&#xA;&#x9;('A','A5'),&#xA;&#x9;('A','A6'),&#xA;&#x9;('B','B1'),&#xA;&#x9;('B','B2'),&#xA;&#x9;('B','B3'),&#xA;&#x9;('B','B4'),&#xA;&#x9;('B','B5'),&#xA;&#x9;('B','B6'),&#xA;&#x9;('C','C1'),&#xA;&#x9;('C','C2'),&#xA;&#x9;('C','C3'),&#xA;&#x9;('C','C4'),&#xA;&#x9;('C','C5'),&#xA;&#x9;('C','C6'),&#xA;&#x9;('C','C7'),&#xA;&#x9;('C','C8'),&#xA;&#x9;('D','D1'),&#xA;&#x9;('D','D2'),&#xA;&#x9;('D','D3'),&#xA;&#x9;('D','D4'),&#xA;&#x9;('D','D5'),&#xA;&#x9;('D','D6'),&#xA;&#x9;('E','E1'),&#xA;&#x9;('E','E2'),&#xA;&#x9;('E','E3'),&#xA;&#x9;('E','E4'),&#xA;&#x9;('E','E5'),&#xA;&#x9;('F',NULL),&#xA;&#x9;('G',NULL)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -64,7 +64,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_Gate&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Gate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -81,7 +81,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Gate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

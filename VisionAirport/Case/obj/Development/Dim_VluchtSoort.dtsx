@@ -7,12 +7,12 @@
   DTS:CreatorName="GENTGRP\puttemsa"
   DTS:DTSID="{F6E39F20-1052-4A25-BBC7-F600A4D87C6B}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="2067"
   DTS:ObjectName="Dim_VluchtSoort"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{3650B04F-D428-4B61-AE2B-18F72D15BCAF}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{BEBDCECE-463B-43C3-83AF-6C23F0E2C7F1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_VluchtSoort FOREIGN KEY(VluchtSoort_ID) REFERENCES Dim_VluchtSoort(VluchtSoort_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_VluchtSoort FOREIGN KEY(VluchtSoort_ID) REFERENCES Dim_VluchtSoort(VluchtSoort_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -47,7 +47,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="INSERT INTO dbo.Dim_VluchtSoort(Soort_vlucht)&#xA;VALUES&#xA;&#x9;('Routevlucht_Europa'),&#xA;&#x9;('Routevlucht_Intercontinentaal'),&#xA;&#x9;('Vrachtvlucht'),&#xA;&#x9;('Privévlucht'),&#xA;&#x9;('Onbekend')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -64,7 +64,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_VluchtSoort&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_VluchtSoort" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -81,7 +81,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_VluchtSoort" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

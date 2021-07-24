@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\MaVO"
   DTS:DTSID="{DBB156B4-E078-4E1A-9703-632E55E8682B}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="8192"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{EC90AF97-D0D0-406C-8BCF-FA62BE8F877C}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{E2E8E8D6-5DA1-4A40-AD40-F54A334701A2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Vliegtuig FOREIGN KEY(Vliegtuig_ID) REFERENCES Dim_Vliegtuig(Vliegtuig_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Vliegtuig FOREIGN KEY(Vliegtuig_ID) REFERENCES Dim_Vliegtuig(Vliegtuig_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -50,261 +50,237 @@
           <components>
             <component
               refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="DW Dim_Vliegtuig"
               usesDispositions="true"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Dim_Vliegtuig]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Vliegtuig"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Connections[IDbConnection]"
+                  connectionManagerID="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_DWH]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
+                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input]"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
-                  name="OLE DB Destination Input">
+                  name="ADO NET Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Maatschappij_IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[MaatschappijenICAO]"
                       cachedDataType="wstr"
                       cachedLength="50"
-                      cachedName="Maatschappij_IATA"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_IATA]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_IATA]" />
+                      cachedName="MaatschappijenICAO"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_ICAO]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenICAO]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Maatschappij_ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[MaatschappijenIATA]"
                       cachedDataType="wstr"
                       cachedLength="50"
-                      cachedName="Maatschappij_ICAO"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_ICAO]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]" />
+                      cachedName="MaatschappijenIATA"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_IATA]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenIATA]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[VliegtuigId]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[MaatschappijenName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MaatschappijenName"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_Naam]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenName]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[Vracht]"
                       cachedDataType="i4"
-                      cachedName="VliegtuigId"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Vliegtuig_ID]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigId]" />
+                      cachedName="Vracht"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Capaciteit_Vracht]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vracht]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[VliegtuigtypeId]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeCapaciteit]"
                       cachedDataType="i4"
-                      cachedName="VliegtuigtypeId"
-                      cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Vliegtuigtype_ID]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigtypeId]" />
+                      cachedName="VliegtuigtypeCapaciteit"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Capaciteit_Passagiers]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCapaciteit]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[MaatschappijId]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeWake]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="VliegtuigtypeWake"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Wake]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeWake]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeCat]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="VliegtuigtypeCat"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Categorie]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCat]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeICAO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="VliegtuigtypeICAO"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type_ICAO]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeICAO]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeIATA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="VliegtuigtypeIATA"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type_IATA]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeIATA]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[Vliegtuigtypetype]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Vliegtuigtypetype"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigtypetype]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeMerk]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="VliegtuigtypeMerk"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Merk]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeMerk]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[Bouwjaar]"
                       cachedDataType="i4"
-                      cachedName="MaatschappijId"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Maatschapij_ID]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[MaatschappijId]" />
+                      cachedName="Bouwjaar"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Bouwjaar]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Bouwjaar]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Vliegtuigcode]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[Vliegtuigcode]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Vliegtuigcode"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Code]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vliegtuigcode]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Code]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Bouwjaar]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigId]"
                       cachedDataType="i4"
-                      cachedName="Bouwjaar"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Bouwjaar]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Bouwjaar]" />
+                      cachedName="VliegtuigId"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Vliegtuig_ID]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigId]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Merk]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Merk"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Merk]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Merk]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Type]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="Type"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Type_IATA]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Type_IATA"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type_IATA]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_IATA]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Type_ICAO]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Type_ICAO"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type_ICAO]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_ICAO]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Cat]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Cat"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Categorie]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Cat]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Wake]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Wake"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Wake]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Wake]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Capaciteit]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[MaatschappijId]"
                       cachedDataType="i4"
-                      cachedName="Capaciteit"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Capaciteit_Passagiers]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Capaciteit]" />
+                      cachedName="MaatschappijId"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Maatschapij_ID]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijId]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Vracht]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].Columns[VliegtuigtypeId]"
                       cachedDataType="i4"
-                      cachedName="Vracht"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Capaciteit_Vracht]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vracht]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Name"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_Naam]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Name]" />
+                      cachedName="VliegtuigtypeId"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Vliegtuigtype_ID]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeId]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_ID]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_ID]"
                       dataType="i4"
                       name="Vliegtuig_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Vliegtuig_ID]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Vliegtuig_ID]"
                       dataType="i4"
                       name="OLTP_Vliegtuig_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Vliegtuigtype_ID]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Vliegtuigtype_ID]"
                       dataType="i4"
                       name="OLTP_Vliegtuigtype_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Maatschapij_ID]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Maatschapij_ID]"
                       dataType="i4"
                       name="OLTP_Maatschapij_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Code]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Code]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Code" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Bouwjaar]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Bouwjaar]"
                       dataType="i4"
                       name="Vliegtuig_Bouwjaar" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Merk]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Merk]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Merk" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type]"
                       dataType="wstr"
                       length="100"
                       name="Vliegtuig_Type" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type_IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type_IATA]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Type_IATA" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Type_ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Type_ICAO]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Type_ICAO" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Categorie]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Categorie]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Categorie" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_Wake]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Vliegtuig_Wake]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuig_Wake" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Capaciteit_Passagiers]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Capaciteit_Passagiers]"
                       dataType="i4"
                       name="Capaciteit_Passagiers" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Capaciteit_Vracht]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Capaciteit_Vracht]"
                       dataType="i4"
                       name="Capaciteit_Vracht" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_Naam]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_Naam]"
                       dataType="wstr"
                       length="50"
                       name="Maatschappij_Naam" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_IATA]"
                       dataType="wstr"
                       length="50"
                       name="Maatschappij_IATA" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input].ExternalColumns[Maatschappij_ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input].ExternalColumns[Maatschappij_ICAO]"
                       dataType="wstr"
                       length="50"
                       name="Maatschappij_ICAO" />
@@ -313,22 +289,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input]">
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -337,1697 +313,459 @@
               </outputs>
             </component>
             <component
-              refId="Package\Full Load Dim_Vliegtuig\Merge Join"
-              componentClassID="Microsoft.MergeJoin"
-              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
-              name="Merge Join"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of join to perform."
-                  name="JoinType"
-                  typeConverter="JoinType">2</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the number of columns in the ordering key."
-                  name="NumKeyColumns">1</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the null values are treated as equal values."
-                  name="TreatNullsAsEqual">true</property>
-                <property
-                  dataType="System.Int32"
-                  description="Indicates the requested maximum buffers per input before blocking."
-                  name="MaxBuffersPerInput">5</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input]"
-                  hasSideEffects="true"
-                  name="Merge Join Left Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[MaatschappijId]"
-                      cachedDataType="i4"
-                      cachedName="MaatschappijId"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[MaatschappijId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[VliegtuigId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[VliegtuigtypeId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigtypeId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Airlinecode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Airlinecode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Airlinecode]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Vliegtuigcode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigcode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Vliegtuigtype]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigtype"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigtype]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Bouwjaar]"
-                      cachedDataType="i4"
-                      cachedName="Bouwjaar"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Bouwjaar]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input]"
-                  hasSideEffects="true"
-                  name="Merge Join Right Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[MaatschappijId]"
-                      cachedDataType="i4"
-                      cachedName="MaatschappijId"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[MaatschappijId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Name"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[Name]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[IATA]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="IATA"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[IATA]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[ICAO]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="ICAO"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[ICAO]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output]"
-                  isSorted="true"
-                  name="Merge Join Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigId]"
-                      name="VliegtuigId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[VliegtuigId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[MaatschappijId]"
-                      name="MaatschappijId"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[MaatschappijId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigtypeId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigtypeId]"
-                      name="VliegtuigtypeId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[VliegtuigtypeId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Airlinecode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Airlinecode]"
-                      name="Airlinecode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Airlinecode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Vliegtuigcode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigtype]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigtype]"
-                      name="Vliegtuigtype">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Vliegtuigtype]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Bouwjaar]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Bouwjaar]"
-                      name="Bouwjaar">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input].Columns[Bouwjaar]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Name]"
-                      name="Name">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[Name]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_IATA]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_IATA]"
-                      name="Maatschappij_IATA">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[IATA]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]"
-                      name="Maatschappij_ICAO">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input].Columns[ICAO]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Full Load Dim_Vliegtuig\Merge Join 1"
-              componentClassID="Microsoft.MergeJoin"
-              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
-              name="Merge Join 1"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of join to perform."
-                  name="JoinType"
-                  typeConverter="JoinType">2</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the number of columns in the ordering key."
-                  name="NumKeyColumns">1</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the null values are treated as equal values."
-                  name="TreatNullsAsEqual">true</property>
-                <property
-                  dataType="System.Int32"
-                  description="Indicates the requested maximum buffers per input before blocking."
-                  name="MaxBuffersPerInput">5</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input]"
-                  hasSideEffects="true"
-                  name="Merge Join Left Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[VliegtuigtypeId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigtypeId"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigtypeId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[VliegtuigId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[MaatschappijId]"
-                      cachedDataType="i4"
-                      cachedName="MaatschappijId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[MaatschappijId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Airlinecode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Airlinecode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Airlinecode]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Vliegtuigcode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigcode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigcode]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Vliegtuigtype]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigtype"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigtype]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Bouwjaar]"
-                      cachedDataType="i4"
-                      cachedName="Bouwjaar"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Bouwjaar]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Name"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Name]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Maatschappij_IATA]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Maatschappij_IATA"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_IATA]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Maatschappij_ICAO]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Maatschappij_ICAO"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_ICAO]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input]"
-                  hasSideEffects="true"
-                  name="Merge Join Right Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[VliegtuigtypeId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigtypeId"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[IATA]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="IATA"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[IATA]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[ICAO]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="ICAO"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[ICAO]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Merk]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Merk"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Merk]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Type]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="Type"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Type]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Wake]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Wake"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Wake]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Cat]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Cat"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Cat]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Capaciteit]"
-                      cachedDataType="i4"
-                      cachedName="Capaciteit"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Capaciteit]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Vracht]"
-                      cachedDataType="i4"
-                      cachedName="Vracht"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Vracht]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output]"
-                  isSorted="true"
-                  name="Merge Join Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigId]"
-                      name="VliegtuigId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[VliegtuigId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[MaatschappijId]"
-                      name="MaatschappijId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[MaatschappijId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigtypeId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[VliegtuigtypeId]"
-                      name="VliegtuigtypeId"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[VliegtuigtypeId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Airlinecode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Airlinecode]"
-                      name="Airlinecode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Airlinecode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Vliegtuigcode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vliegtuigtype]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vliegtuigtype]"
-                      name="Vliegtuigtype">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Vliegtuigtype]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Bouwjaar]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Bouwjaar]"
-                      name="Bouwjaar">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Bouwjaar]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Name]"
-                      name="Name">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Name]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_IATA]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_IATA]"
-                      name="Maatschappij_IATA">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Maatschappij_IATA]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]"
-                      name="Maatschappij_ICAO">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input].Columns[Maatschappij_ICAO]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_IATA]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_IATA]"
-                      name="Type_IATA">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[IATA]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type_ICAO]"
-                      name="Type_ICAO">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[ICAO]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Merk]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Merk]"
-                      name="Merk">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Merk]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Type]"
-                      name="Type">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Type]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Wake]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Wake]"
-                      name="Wake">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Wake]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Cat]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Cat]"
-                      name="Cat">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Cat]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Capaciteit]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Capaciteit]"
-                      name="Capaciteit">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Capaciteit]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vracht]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output].Columns[Vracht]"
-                      name="Vracht">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input].Columns[Vracht]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="OLTP CLEANED_Maatschappij"
+              refId="Package\Full Load Dim_Vliegtuig\OLTP"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="OLTP"
               usesDispositions="true"
-              version="7">
+              version="4">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [MaatschappijId]
-      ,[Name]
-      ,[IATA]
-      ,[ICAO]
-  FROM [CLEANED].[Maatschappijen]
-Order By MaatschappijId</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output]"
-                  isSorted="true"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[MaatschappijId]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[MaatschappijId]"
-                      name="MaatschappijId"
-                      sortKeyPosition="1"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[Name]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[Name]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[Name]"
-                      name="Name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[IATA]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[IATA]"
-                      name="IATA"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[ICAO]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].Columns[ICAO]"
-                      name="ICAO"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[MaatschappijId]"
-                      dataType="i4"
-                      name="MaatschappijId" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      name="Name" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
-                      dataType="wstr"
-                      length="50"
-                      name="IATA" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      name="ICAO" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[MaatschappijId]"
-                      name="MaatschappijId" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[Name]"
-                      name="Name" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[IATA]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[IATA]"
-                      name="IATA" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ICAO]"
-                      name="ICAO" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="OLTP CLEANED_Vliegtuig"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[CLEANED].[Datum]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [VliegtuigId]
-      ,[MaatschappijId]
-      ,[VliegtuigtypeId]
+      ,[Vliegtuig].[MaatschappijId]
+      ,[Vliegtuigtype].[VliegtuigtypeId]
       ,[Airlinecode]
       ,[Vliegtuigcode]
       ,[Vliegtuigtype]
       ,[Bouwjaar]
+	  ,[Vliegtuigtype].[IATA] AS [VliegtuigtypeIATA]
+      ,[Vliegtuigtype].[ICAO] AS [VliegtuigtypeICAO]
+      ,[Vliegtuigtype].[Merk] AS [VliegtuigtypeMerk]
+      ,[Vliegtuigtype].[Type] AS [Vliegtuigtypetype]
+      ,[Vliegtuigtype].[Wake] AS [VliegtuigtypeWake]
+      ,[Vliegtuigtype].[Cat] AS  [VliegtuigtypeCat]
+      ,[Vliegtuigtype].[Capaciteit] AS [VliegtuigtypeCapaciteit]
+      ,[Vracht]
+	  ,[Maatschappijen].[Name] AS [MaatschappijenName]
+      ,[Maatschappijen].[IATA] AS [MaatschappijenIATA]
+      ,[Maatschappijen].[ICAO]AS [MaatschappijenICAO]
   FROM [CLEANED].[Vliegtuig]
-ORDER BY MaatschappijId</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output]"
-                  isSorted="true"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigId]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigId]"
-                      name="VliegtuigId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[MaatschappijId]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[MaatschappijId]"
-                      name="MaatschappijId"
-                      sortKeyPosition="1"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
-                      name="VliegtuigtypeId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Airlinecode]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Airlinecode]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Airlinecode]"
-                      name="Airlinecode"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigcode]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigtype]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigtype]"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Vliegtuigtype]"
-                      name="Vliegtuigtype"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Bouwjaar]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Bouwjaar]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].Columns[Bouwjaar]"
-                      name="Bouwjaar"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigId]"
-                      dataType="i4"
-                      name="VliegtuigId" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[MaatschappijId]"
-                      dataType="i4"
-                      name="MaatschappijId" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
-                      dataType="i4"
-                      name="VliegtuigtypeId" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Airlinecode]"
-                      dataType="wstr"
-                      length="50"
-                      name="Airlinecode" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigcode]"
-                      dataType="wstr"
-                      length="50"
-                      name="Vliegtuigcode" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigtype]"
-                      dataType="wstr"
-                      length="50"
-                      name="Vliegtuigtype" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output].ExternalColumns[Bouwjaar]"
-                      dataType="i4"
-                      name="Bouwjaar" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[VliegtuigId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[VliegtuigId]"
-                      name="VliegtuigId" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[MaatschappijId]"
-                      name="MaatschappijId" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
-                      name="VliegtuigtypeId" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Airlinecode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Airlinecode]"
-                      name="Airlinecode" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Vliegtuigtype]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Vliegtuigtype]"
-                      name="Vliegtuigtype" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Bouwjaar]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[Bouwjaar]"
-                      name="Bouwjaar" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="OLTP CLEANED_Vliegtuigtype"
-              usesDispositions="true"
-              version="7">
-              <properties>
+  INNER JOIN [CLEANED].[Vliegtuigtype] ON [Vliegtuig].[VliegtuigtypeId] = [Vliegtuigtype].[VliegtuigtypeId]
+  INNER JOIN [CLEANED].[Maatschappijen] ON [Vliegtuig].[MaatschappijId] = [Maatschappijen].[MaatschappijId]
+ORDER BY [Vliegtuig].MaatschappijId asc</property>
                 <property
                   dataType="System.Int32"
                   description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [VliegtuigtypeId]
-      ,[IATA]
-      ,[ICAO]
-      ,[Merk]
-      ,[Type]
-      ,[Wake]
-      ,[Cat]
-      ,[Capaciteit]
-      ,[Vracht]
-  FROM [CLEANED].[Vliegtuigtype]
-ORDER BY VliegtuigtypeId</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
                 <property
                   dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Vliegtuig\OLTP.Connections[IDbConnection]"
+                  connectionManagerID="{0B5E5886-AE61-4176-AA5E-6F5A102074F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_OLTP]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output]"
-                  isSorted="true"
-                  name="OLE DB Source Output">
+                  refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[VliegtuigtypeId]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigId]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigId]"
+                      name="VliegtuigId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijId]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijId]"
+                      name="MaatschappijId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeId]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeId]"
                       name="VliegtuigtypeId"
-                      sortKeyPosition="1"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Airlinecode]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Airlinecode]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[IATA]"
-                      name="IATA"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Airlinecode]"
+                      name="Airlinecode"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigcode]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[ICAO]"
-                      name="ICAO"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]"
+                      name="Vliegtuigcode"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Merk]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigtype]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Merk]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigtype]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Merk]"
-                      name="Merk"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigtype]"
+                      name="Vliegtuigtype"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Type]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Bouwjaar]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Bouwjaar]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Bouwjaar]"
+                      name="Bouwjaar"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeIATA]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeIATA]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeIATA]"
+                      name="VliegtuigtypeIATA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeICAO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeICAO]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeICAO]"
+                      name="VliegtuigtypeICAO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeMerk]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeMerk]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeMerk]"
+                      name="VliegtuigtypeMerk"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigtypetype]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigtypetype]"
                       length="100"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Type]"
-                      name="Type"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vliegtuigtypetype]"
+                      name="Vliegtuigtypetype"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Wake]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeWake]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Wake]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeWake]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Wake]"
-                      name="Wake"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeWake]"
+                      name="VliegtuigtypeWake"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Cat]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCat]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Cat]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeCat]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Cat]"
-                      name="Cat"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCat]"
+                      name="VliegtuigtypeCat"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Capaciteit]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCapaciteit]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Capaciteit]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Capaciteit]"
-                      name="Capaciteit"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeCapaciteit]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[VliegtuigtypeCapaciteit]"
+                      name="VliegtuigtypeCapaciteit"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Vracht]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vracht]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Vracht]"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].Columns[Vracht]"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vracht]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[Vracht]"
                       name="Vracht"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenName]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenName]"
+                      name="MaatschappijenName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenIATA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenIATA]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenIATA]"
+                      name="MaatschappijenIATA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenICAO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenICAO]"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].Columns[MaatschappijenICAO]"
+                      name="MaatschappijenICAO"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[VliegtuigtypeId]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigId]"
+                      dataType="i4"
+                      name="VliegtuigId" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijId]"
+                      dataType="i4"
+                      name="MaatschappijId" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeId]"
                       dataType="i4"
                       name="VliegtuigtypeId" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Airlinecode]"
                       dataType="wstr"
                       length="50"
-                      name="IATA" />
+                      name="Airlinecode" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigcode]"
                       dataType="wstr"
                       length="50"
-                      name="ICAO" />
+                      name="Vliegtuigcode" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Merk]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigtype]"
                       dataType="wstr"
                       length="50"
-                      name="Merk" />
+                      name="Vliegtuigtype" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Bouwjaar]"
+                      dataType="i4"
+                      name="Bouwjaar" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeIATA]"
+                      dataType="wstr"
+                      length="50"
+                      name="VliegtuigtypeIATA" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeICAO]"
+                      dataType="wstr"
+                      length="50"
+                      name="VliegtuigtypeICAO" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeMerk]"
+                      dataType="wstr"
+                      length="50"
+                      name="VliegtuigtypeMerk" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigtypetype]"
                       dataType="wstr"
                       length="100"
-                      name="Type" />
+                      name="Vliegtuigtypetype" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Wake]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeWake]"
                       dataType="wstr"
                       length="50"
-                      name="Wake" />
+                      name="VliegtuigtypeWake" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Cat]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeCat]"
                       dataType="wstr"
                       length="50"
-                      name="Cat" />
+                      name="VliegtuigtypeCat" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Capaciteit]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[VliegtuigtypeCapaciteit]"
                       dataType="i4"
-                      name="Capaciteit" />
+                      name="VliegtuigtypeCapaciteit" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output].ExternalColumns[Vracht]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[Vracht]"
                       dataType="i4"
                       name="Vracht" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenName]"
+                      dataType="wstr"
+                      length="50"
+                      name="MaatschappijenName" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenIATA]"
+                      dataType="wstr"
+                      length="50"
+                      name="MaatschappijenIATA" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output].ExternalColumns[MaatschappijenICAO]"
+                      dataType="wstr"
+                      length="50"
+                      name="MaatschappijenICAO" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
-                  name="OLE DB Source Error Output">
+                  name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigId]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[VliegtuigtypeId]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigId]"
+                      name="VliegtuigId" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijId]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijId]"
+                      name="MaatschappijId" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeId]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeId]"
                       name="VliegtuigtypeId" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[IATA]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Airlinecode]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[IATA]"
-                      name="IATA" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Airlinecode]"
+                      name="Airlinecode" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ICAO]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigcode]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ICAO]"
-                      name="ICAO" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigcode]"
+                      name="Vliegtuigcode" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Merk]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigtype]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Merk]"
-                      name="Merk" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigtype]"
+                      name="Vliegtuigtype" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Bouwjaar]"
+                      dataType="i4"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Bouwjaar]"
+                      name="Bouwjaar" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeIATA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeIATA]"
+                      name="VliegtuigtypeIATA" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeICAO]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeICAO]"
+                      name="VliegtuigtypeICAO" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeMerk]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeMerk]"
+                      name="VliegtuigtypeMerk" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigtypetype]"
                       dataType="wstr"
                       length="100"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Type]"
-                      name="Type" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vliegtuigtypetype]"
+                      name="Vliegtuigtypetype" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Wake]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeWake]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Wake]"
-                      name="Wake" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeWake]"
+                      name="VliegtuigtypeWake" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Cat]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeCat]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Cat]"
-                      name="Cat" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeCat]"
+                      name="VliegtuigtypeCat" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Capaciteit]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeCapaciteit]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Capaciteit]"
-                      name="Capaciteit" />
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[VliegtuigtypeCapaciteit]"
+                      name="VliegtuigtypeCapaciteit" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Vracht]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vracht]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[Vracht]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[Vracht]"
                       name="Vracht" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenName]"
+                      name="MaatschappijenName" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenIATA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenIATA]"
+                      name="MaatschappijenIATA" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenICAO]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[MaatschappijenICAO]"
+                      name="MaatschappijenICAO" />
+                    <outputColumn
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Full Load Dim_Vliegtuig\Sort"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input]"
-                  name="Sort Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[VliegtuigId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigId]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[MaatschappijId]"
-                      cachedDataType="i4"
-                      cachedName="MaatschappijId"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[MaatschappijId]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[VliegtuigtypeId]"
-                      cachedDataType="i4"
-                      cachedName="VliegtuigtypeId"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigtypeId]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">1</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Airlinecode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Airlinecode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Airlinecode]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Vliegtuigcode]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigcode"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigcode]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Vliegtuigtype]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Vliegtuigtype"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigtype]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Bouwjaar]"
-                      cachedDataType="i4"
-                      cachedName="Bouwjaar"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Bouwjaar]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Name]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Name"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Name]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Maatschappij_IATA]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Maatschappij_IATA"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_IATA]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input].Columns[Maatschappij_ICAO]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Maatschappij_ICAO"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigId]"
-                      name="VliegtuigId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[MaatschappijId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[MaatschappijId]"
-                      name="MaatschappijId">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[MaatschappijId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigtypeId]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[VliegtuigtypeId]"
-                      name="VliegtuigtypeId"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[VliegtuigtypeId]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Airlinecode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Airlinecode]"
-                      name="Airlinecode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Airlinecode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigcode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigtype]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Vliegtuigtype]"
-                      name="Vliegtuigtype">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Vliegtuigtype]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Bouwjaar]"
-                      dataType="i4"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Bouwjaar]"
-                      name="Bouwjaar">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Bouwjaar]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Name]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Name]"
-                      name="Name">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Name]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_IATA]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_IATA]"
-                      name="Maatschappij_IATA">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_IATA]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_ICAO]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output].Columns[Maatschappij_ICAO]"
-                      name="Maatschappij_ICAO">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output].Columns[Maatschappij_ICAO]}</property>
-                      </properties>
-                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2036,35 +774,10 @@ ORDER BY VliegtuigtypeId</property>
           </components>
           <paths>
             <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[Merge Join Output]"
-              endId="Package\Full Load Dim_Vliegtuig\Sort.Inputs[Sort Input]"
-              name="Merge Join Output"
-              startId="Package\Full Load Dim_Vliegtuig\Merge Join.Outputs[Merge Join Output]" />
-            <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[Merge Join Output1]"
-              endId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[OLE DB Destination Input]"
-              name="Merge Join Output"
-              startId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Outputs[Merge Join Output]" />
-            <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output]"
-              endId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Left Input]"
-              name="OLE DB Source Output"
-              startId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output1]"
-              endId="Package\Full Load Dim_Vliegtuig\Merge Join.Inputs[Merge Join Right Input]"
-              name="OLE DB Source Output"
-              startId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output2]"
-              endId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Right Input]"
-              name="OLE DB Source Output"
-              startId="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Full Load Dim_Vliegtuig.Paths[Sort Output]"
-              endId="Package\Full Load Dim_Vliegtuig\Merge Join 1.Inputs[Merge Join Left Input]"
-              name="Sort Output"
-              startId="Package\Full Load Dim_Vliegtuig\Sort.Outputs[Sort Output]" />
+              refId="Package\Full Load Dim_Vliegtuig.Paths[ADO NET Source Output]"
+              endId="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Full Load Dim_Vliegtuig\OLTP.Outputs[ADO NET Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2082,7 +795,7 @@ ORDER BY VliegtuigtypeId</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_Vliegtuig&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Vliegtuig" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -2099,7 +812,7 @@ ORDER BY VliegtuigtypeId</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Vliegtuig" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -2153,37 +866,25 @@ ORDER BY VliegtuigtypeId</property>
         <NodeLayout
           Size="254.4,41.6"
           Id="Package\Remove FK constraints Dim_Vliegtuig"
-          TopLeft="61.928570856854,60" />
+          TopLeft="27.6428559872575,57.705882320767" />
         <NodeLayout
           Size="173.6,41.6"
           Id="Package\Truncate Table Dim_Vliegtuig"
           TopLeft="61.2142856413011,154.647060571657" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="189.528570856854,101.6">
+          TopLeft="151.428570814279,99.305882320767">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-41.514285215553,53.0470605716572"
+              EndConnector="0,55.34117825089"
               Start="0,0"
-              End="-41.514285215553,45.5470605716572">
+              End="0,47.84117825089">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.5235302858286" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.5235302858286"
-                    Point2="0,26.5235302858286"
-                    Point3="-4,26.5235302858286" />
-                  <mssgle:LineSegment
-                    End="-37.514285215553,26.5235302858286" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-37.514285215553,26.5235302858286"
-                    Point2="-41.514285215553,26.5235302858286"
-                    Point3="-41.514285215553,30.5235302858286" />
-                  <mssgle:LineSegment
-                    End="-41.514285215553,45.5470605716572" />
+                    End="0,47.84117825089" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2243,219 +944,29 @@ ORDER BY VliegtuigtypeId</property>
     design-time-name="Package\Full Load Dim_Vliegtuig">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="199.2,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij"
-          TopLeft="280.500004683222,88.0882364523864" />
+          Size="103.2,41.6"
+          Id="Package\Full Load Dim_Vliegtuig\OLTP"
+          TopLeft="252.857147163274,187.317646779981" />
         <NodeLayout
           Size="164,41.6"
           Id="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig"
-          TopLeft="444.285721851855,458.058829953514" />
-        <NodeLayout
-          Size="197.6,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig"
-          TopLeft="22.1428575199475,91.7647071693179" />
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\Merge Join"
-          TopLeft="176.428574433132,174.352943621705" />
+          TopLeft="217.857146567228,307.658826307112" />
         <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output]"
-          TopLeft="120.942857519947,133.364707169318">
+          Id="Package\Full Load Dim_Vliegtuig.Paths[ADO NET Source Output]"
+          TopLeft="302.157146865251,228.917646779981">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="100.019050246518,40.9882364523868"
+              EndConnector="0,78.741179527131"
               Start="0,0"
-              End="100.019050246518,33.4882364523868">
+              End="0,71.241179527131">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.2930279461707" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2930279461707"
-                    Point2="0,24.2930279461707"
-                    Point3="4,24.2930279461707" />
-                  <mssgle:LineSegment
-                    End="96.019050246518,24.2930279461707" />
-                  <mssgle:CubicBezierSegment
-                    Point1="96.019050246518,24.2930279461707"
-                    Point2="100.019050246518,24.2930279461707"
-                    Point3="100.019050246518,28.2930279461707" />
-                  <mssgle:LineSegment
-                    End="100.019050246518,33.4882364523868" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output1]"
-          TopLeft="380.100004683222,129.688236452386">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-118.604763583423,44.6647071693183"
-              Start="0,0"
-              End="-118.604763583423,37.1647071693183">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.4720093710838" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.4720093710838"
-                    Point2="0,26.4720093710838"
-                    Point3="-4,26.4720093710838" />
-                  <mssgle:LineSegment
-                    End="-114.604763583423,26.4720093710838" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-114.604763583423,26.4720093710838"
-                    Point2="-118.604763583423,26.4720093710838"
-                    Point3="-118.604763583423,30.4720093710838" />
-                  <mssgle:LineSegment
-                    End="-118.604763583423,37.1647071693183" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="97.6,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\Sort"
-          TopLeft="337.142862884366,266.117650791023" />
-        <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[Merge Join Output]"
-          TopLeft="241.228574433132,215.952943621705">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="144.714288451234,50.1647071693185"
-              Start="0,0"
-              End="144.714288451234,42.6647071693185">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.0823535846592" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.0823535846592"
-                    Point2="0,25.0823535846592"
-                    Point3="4,25.0823535846592" />
-                  <mssgle:LineSegment
-                    End="140.714288451234,25.0823535846592" />
-                  <mssgle:CubicBezierSegment
-                    Point1="140.714288451234,25.0823535846592"
-                    Point2="144.714288451234,25.0823535846592"
-                    Point3="144.714288451234,29.0823535846592" />
-                  <mssgle:LineSegment
-                    End="144.714288451234,42.6647071693185" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="189.6,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype"
-          TopLeft="550.671435784807,88.8529423454641" />
-        <NodeLayout
-          Size="138.4,41.6"
-          Id="Package\Full Load Dim_Vliegtuig\Merge Join 1"
-          TopLeft="451.928578520308,349.029416161838" />
-        <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[Sort Output]"
-          TopLeft="385.942862884366,307.717650791023">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="135.185715635942,41.3117653708143"
-              Start="0,0"
-              End="135.185715635942,33.8117653708143">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.6558826854072" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.6558826854072"
-                    Point2="0,20.6558826854072"
-                    Point3="4,20.6558826854072" />
-                  <mssgle:LineSegment
-                    End="131.185715635942,20.6558826854072" />
-                  <mssgle:CubicBezierSegment
-                    Point1="131.185715635942,20.6558826854072"
-                    Point2="135.185715635942,20.6558826854072"
-                    Point3="135.185715635942,24.6558826854072" />
-                  <mssgle:LineSegment
-                    End="135.185715635942,33.8117653708143" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[OLE DB Source Output2]"
-          TopLeft="645.471435784807,130.452942345464">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-102.609523931166,218.576473816373"
-              Start="0,0"
-              End="-102.609523931166,211.076473816373">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,125.647074183655" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,125.647074183655"
-                    Point2="0,129.647074183655"
-                    Point3="-4,129.647074183655" />
-                  <mssgle:LineSegment
-                    End="-98.6095239311658,129.647074183655" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-98.6095239311658,129.647074183655"
-                    Point2="-102.609523931166,129.647074183655"
-                    Point3="-102.609523931166,133.647074183655" />
-                  <mssgle:LineSegment
-                    End="-102.609523931166,211.076473816373" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Full Load Dim_Vliegtuig.Paths[Merge Join Output1]"
-          TopLeft="523.707150186081,390.629416161838">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,67.4294137916762"
-              Start="0,0"
-              End="0,59.9294137916762">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.9294137916762" />
+                    End="0,71.241179527131" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2468,7 +979,7 @@ ORDER BY VliegtuigtypeId</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Maatschappij">
+    design-time-name="Package\Full Load Dim_Vliegtuig\OLTP">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2477,27 +988,6 @@ ORDER BY VliegtuigtypeId</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Full Load Dim_Vliegtuig\DW Dim_Vliegtuig">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuig">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Vliegtuig\OLTP CLEANED_Vliegtuigtype">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OLEDB_DWH"
+  DTS:DTSID="{8184ED1A-632D-45C6-903C-DE13F46AA078}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=DWH;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package1-{8184ED1A-632D-45C6-903C-DE13F46AA078}sql-ypp-2099.database.windows.net.DWH.ypp1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAACKLqy5MD9KCiwY7Q+rS8E3T0hzcygkuhNzbn2NqB45NgAAAAAOgAAAAAIAACAAAABczZvNzW7ZZipp1JB/TFF9+KbunPa801lP774YDeFEOIAAAABpbtgZRjp8u/rR1izamotPaqeNou6shcTEz8AQPjweVOepw5BPnrlTBKrfCmYZH1nGPKRh0nB1Mc4JTlLT39HohcCSCOXAX1tClyHS01oWGHbT7x+yUOeA7I6+THG+vvi5DzXLTy2RkQ1DSUsBvm61kvFYdv+wG2hYiEU52kSmf0AAAAB56WKqz+oB91vBw1feefnSwYvKJhsH1KmNJPaBVHJbYOiRIQ+JZptLIDpHgfbIvEndB3EUhJrqBwjx4kgqd/vR</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

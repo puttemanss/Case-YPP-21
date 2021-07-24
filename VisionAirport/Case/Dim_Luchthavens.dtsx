@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\MaVO"
   DTS:DTSID="{FD99F2BA-DB61-417E-A5EE-6AE279244D39}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="8192"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{4134A289-6B34-4C54-BCA6-41BAFC4486A5}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{4C6FE6FB-B7D7-4EF0-A784-060B95172CB0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Aankomst ADD CONSTRAINT  FK_Fact_Aankomst_Dim_Luchthavens FOREIGN KEY(Luchthaven_ID) REFERENCES Dim_Luchthavens(Luchthaven_ID)&#xA;ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Luchthavens FOREIGN KEY(Luchthaven_ID) REFERENCES Dim_Luchthavens(Luchthaven_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -50,218 +50,196 @@
           <components>
             <component
               refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="DW Dim_Luchthavens"
               usesDispositions="true"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Dim_Luchthavens]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Luchthavens"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Connections[IDbConnection]"
+                  connectionManagerID="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_DWH]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
+                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input]"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
-                  name="OLE DB Destination Input">
+                  name="ADO NET Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[LuchthavenId]"
-                      cachedDataType="i4"
-                      cachedName="LuchthavenId"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[LuchthavenId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Airport]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Airport]"
                       cachedDataType="nText"
                       cachedName="Airport"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_Naam]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Airport]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_Naam]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Airport]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[City]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[City]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="City"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Stad]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[City]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Stad]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[City]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Country]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Country]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Country"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Land]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Country]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Land]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Country]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[IATA]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[IATA]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="IATA"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_IATA]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[IATA]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_IATA]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[IATA]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[ICAO]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[ICAO]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="ICAO"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_ICAO]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[ICAO]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_ICAO]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[ICAO]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Lat]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Lat]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Lat"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lat]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Latitude]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lat]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Lon]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Lon]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Lon"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lon]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Longitude]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lon]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Alt]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Alt]"
                       cachedDataType="i4"
                       cachedName="Alt"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Altitude]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Alt]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Altitude]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Alt]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[DST]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="DST"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Zomertijd]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[DST]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[TZ]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[TZ]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="TZ"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[TZ]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_Naam]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[TZ]" />
                     <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].Columns[Tz2]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[DST]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DST"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[DST]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Tz2]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Tz2"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[TijdZone_Naam]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Tz2]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Zomertijd]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Tz2]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[LuchthavenId]"
+                      cachedDataType="i4"
+                      cachedName="LuchthavenId"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[LuchthavenId]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_ID]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_ID]"
                       dataType="i4"
                       name="Luchthaven_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
                       dataType="i4"
                       name="OLTP_Luchthaven_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_Naam]"
-                      dataType="nText"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_Naam]"
+                      dataType="wstr"
+                      length="2147483647"
                       name="Luchthaven_Naam" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Stad]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Stad]"
                       dataType="wstr"
                       length="50"
                       name="Stad" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Land]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Land]"
                       dataType="wstr"
                       length="50"
                       name="Land" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_IATA]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_IATA]"
                       dataType="wstr"
                       length="50"
                       name="Luchthaven_IATA" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_ICAO]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Luchthaven_ICAO]"
                       dataType="wstr"
                       length="50"
                       name="Luchthaven_ICAO" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Latitude]"
                       dataType="wstr"
                       length="50"
                       name="Latitude" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Longitude]"
                       dataType="wstr"
                       length="50"
                       name="Longitude" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Altitude]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Altitude]"
                       dataType="i4"
                       name="Altitude" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[TijdZone_Naam]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_Naam]"
                       dataType="wstr"
                       length="50"
                       name="TijdZone_Naam" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
                       dataType="wstr"
                       length="50"
                       name="TijdZone_VerschilUTC" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input].ExternalColumns[Zomertijd]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Zomertijd]"
                       dataType="wstr"
                       length="50"
                       name="Zomertijd" />
@@ -270,22 +248,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input]">
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -295,328 +273,318 @@
             </component>
             <component
               refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="OLTP CLEANED_Luchthavens"
               usesDispositions="true"
-              version="7">
+              version="4">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[CLEANED].[Luchthavens]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
                 <property
                   dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"cleaned"."Luchthavens"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Connections[IDbConnection]"
+                  connectionManagerID="{0B5E5886-AE61-4176-AA5E-6F5A102074F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_OLTP]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
+                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[LuchthavenId]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[LuchthavenId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[LuchthavenId]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[LuchthavenId]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[LuchthavenId]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[LuchthavenId]"
                       name="LuchthavenId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Airport]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Airport]"
                       dataType="nText"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Airport]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Airport]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Airport]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Airport]"
                       name="Airport"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[City]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[City]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[City]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[City]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[City]"
                       name="City"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Country]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Country]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Country]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Country]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Country]"
                       name="Country"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[IATA]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[IATA]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[IATA]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[IATA]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[IATA]"
                       name="IATA"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[ICAO]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[ICAO]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[ICAO]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[ICAO]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[ICAO]"
                       name="ICAO"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lat]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lat]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Lat]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lat]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lat]"
                       name="Lat"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lon]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lon]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Lon]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Lon]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Lon]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Lon]"
                       name="Lon"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Alt]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Alt]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Alt]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Alt]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Alt]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Alt]"
                       name="Alt"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[TZ]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[TZ]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[TZ]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[TZ]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[TZ]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[TZ]"
                       name="TZ"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[DST]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[DST]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[DST]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[DST]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[DST]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[DST]"
                       name="DST"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Tz2]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Tz2]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Tz2]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Tz2]"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].Columns[Tz2]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Tz2]"
                       name="Tz2"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[LuchthavenId]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[LuchthavenId]"
                       dataType="i4"
                       name="LuchthavenId" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Airport]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Airport]"
                       dataType="nText"
                       name="Airport" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[City]"
                       dataType="wstr"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Country]"
                       dataType="wstr"
                       length="50"
                       name="Country" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[IATA]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[IATA]"
                       dataType="wstr"
                       length="50"
                       name="IATA" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[ICAO]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[ICAO]"
                       dataType="wstr"
                       length="50"
                       name="ICAO" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Lat]"
                       dataType="wstr"
                       length="50"
                       name="Lat" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Lon]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Lon]"
                       dataType="wstr"
                       length="50"
                       name="Lon" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Alt]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Alt]"
                       dataType="i4"
                       name="Alt" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[TZ]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[TZ]"
                       dataType="wstr"
                       length="50"
                       name="TZ" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[DST]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[DST]"
                       dataType="wstr"
                       length="50"
                       name="DST" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output].ExternalColumns[Tz2]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].ExternalColumns[Tz2]"
                       dataType="wstr"
                       length="50"
                       name="Tz2" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
-                  name="OLE DB Source Error Output">
+                  name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[LuchthavenId]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[LuchthavenId]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[LuchthavenId]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[LuchthavenId]"
                       name="LuchthavenId" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Airport]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Airport]"
                       dataType="nText"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Airport]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Airport]"
                       name="Airport" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[City]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[City]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[City]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[City]"
                       name="City" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Country]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Country]"
                       name="Country" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[IATA]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[IATA]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[IATA]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[IATA]"
                       name="IATA" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ICAO]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ICAO]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ICAO]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ICAO]"
                       name="ICAO" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Lat]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Lat]"
                       name="Lat" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Lon]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Lon]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Lon]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Lon]"
                       name="Lon" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Alt]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Alt]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Alt]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Alt]"
                       name="Alt" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[TZ]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[TZ]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[TZ]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[TZ]"
                       name="TZ" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[DST]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[DST]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[DST]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[DST]"
                       name="DST" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Tz2]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Tz2]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[Tz2]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[Tz2]"
                       name="Tz2" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -627,10 +595,10 @@
           </components>
           <paths>
             <path
-              refId="Package\Full Load Dim_Luchthavens.Paths[OLE DB Source Output]"
-              endId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[OLE DB Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[OLE DB Source Output]" />
+              refId="Package\Full Load Dim_Luchthavens.Paths[ADO NET Source Output]"
+              endId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -648,7 +616,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Aankomst DROP CONSTRAINT IF EXISTS FK_Fact_Aankomst_Dim_Luchthavens&#xA;ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Luchthavens" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -665,7 +633,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Luchthavens" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -811,27 +779,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens"
-          TopLeft="322.142862628917,259.235297753324" />
-        <NodeLayout
-          Size="188.8,41.6"
+          Size="216,41.6"
           Id="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens"
-          TopLeft="315.714291090868,156.000002187841" />
+          TopLeft="112.142859052639,109.352942710104" />
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens"
+          TopLeft="130.714287940337,265.02353274715" />
         <EdgeLayout
-          Id="Package\Full Load Dim_Luchthavens.Paths[OLE DB Source Output]"
-          TopLeft="408.528576859893,197.600002187841">
+          Id="Package\Full Load Dim_Luchthavens.Paths[ADO NET Source Output]"
+          TopLeft="220.828573496488,150.952942710104">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61.6352955654833"
+              EndConnector="0,114.070590037046"
               Start="0,0"
-              End="0,54.1352955654833">
+              End="0,106.570590037046">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.1352955654833" />
+                    End="0,106.570590037046" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -844,28 +812,18 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens">
+    <Properties>
       <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -2,63 +2,58 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>Case</Name>
-    <LastWriteTime>2021-04-16T07:56:05.6161726Z</LastWriteTime>
+    <LastWriteTime>2021-07-24T13:20:26.4340167Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Dim_Banen.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5557248Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:21:26.2224304Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Planning.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.562721Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:29:47.1540425Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Gate.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5567213Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:23:29.5667067Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Kalender.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5587212Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:20:04.6796733Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Luchthavens.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5617247Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:20:00.944842Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Klant.dtsx</Name>
-      <LastWriteTime>2021-04-19T15:40:13.3629009Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:16:51.1964442Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Dim_Vliegtuig.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:58:20.3335179Z</LastWriteTime>
-      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Dim_VluchtSoort.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5657246Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T12:43:43.3802699Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Master.dtsx</Name>
-      <LastWriteTime>2021-04-09T09:10:28.5727245Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T13:20:26.1577054Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Fact_Aankomst.dtsx</Name>
-      <LastWriteTime>2021-04-16T07:56:48.5105166Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T13:56:43.3839327Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Fact_Vertrek.dtsx</Name>
-      <LastWriteTime>2021-04-19T15:40:13.3779017Z</LastWriteTime>
+      <LastWriteTime>2021-07-24T13:59:04.3345261Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

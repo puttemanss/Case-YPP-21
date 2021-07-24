@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\SaRu"
   DTS:DTSID="{4266598A-52EC-4AFF-A3DF-DF717F815E3A}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="2067"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{7255848A-F1F1-4DB3-9F2F-D1ECE673E8C8}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{B321CA34-4E78-4200-A2A7-59C89357234B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -140,166 +140,156 @@
             </component>
             <component
               refId="Package\Data Flow Task\CLEAN_Aankomst"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="CLEAN_Aankomst"
               usesDispositions="true"
-              version="7">
+              version="4">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[CLEANED].[Aankomst]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
                 <property
                   dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"cleaned"."Aankomst"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\CLEAN_Aankomst.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task\CLEAN_Aankomst.Connections[IDbConnection]"
+                  connectionManagerID="{0B5E5886-AE61-4176-AA5E-6F5A102074F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_OLTP]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
+                  refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[VluchtId]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]"
-                      name="VluchtId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtidNR]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[VluchtidNR]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtidNR]"
-                      name="VluchtidNR"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigcode]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]"
-                      name="Vliegtuigcode"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[AankomstId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[AankomstId]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[AankomstId]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[AankomstId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]"
                       name="AankomstId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[BaanId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[BaanId]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[BaanId]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[VluchtId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]"
+                      name="VluchtId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[BaanId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]"
                       name="BaanId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Terminal]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtidNR]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Terminal]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[VluchtidNR]"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Terminal]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtidNR]"
+                      name="VluchtidNR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigcode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]"
+                      name="Vliegtuigcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Terminal]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]"
                       name="Terminal"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Gate]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Gate]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Gate]"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Gate]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]"
                       name="Gate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Baan]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Baan]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Baan]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Baan]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Baan]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Baan]"
                       name="Baan"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Bezetting]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Bezetting]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Bezetting]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Bezetting]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Bezetting]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Bezetting]"
                       name="Bezetting"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vracht]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vracht]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Vracht]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vracht]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Vracht]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vracht]"
                       name="Vracht"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]"
                       dataType="dbTimeStamp2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Aankomsttijd]"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]"
+                      externalMetadataColumnId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Aankomsttijd]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]"
                       name="Aankomsttijd"
                       scale="7"
                       truncationRowDisposition="FailComponent" />
@@ -307,131 +297,131 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[VluchtId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[AankomstId]"
+                      dataType="i4"
+                      name="AankomstId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[VluchtId]"
                       dataType="i4"
                       name="VluchtId" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[VluchtidNR]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[BaanId]"
+                      dataType="i4"
+                      name="BaanId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[VluchtidNR]"
                       dataType="wstr"
                       length="50"
                       name="VluchtidNR" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Vliegtuigcode]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Vliegtuigcode]"
                       dataType="wstr"
                       length="50"
                       name="Vliegtuigcode" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[AankomstId]"
-                      dataType="i4"
-                      name="AankomstId" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[BaanId]"
-                      dataType="i4"
-                      name="BaanId" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Terminal]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Terminal]"
                       dataType="wstr"
                       length="50"
                       name="Terminal" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Gate]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Gate]"
                       dataType="wstr"
                       length="50"
                       name="Gate" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Baan]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Baan]"
                       dataType="i4"
                       name="Baan" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Bezetting]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Bezetting]"
                       dataType="i4"
                       name="Bezetting" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Vracht]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Vracht]"
                       dataType="i4"
                       name="Vracht" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].ExternalColumns[Aankomsttijd]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].ExternalColumns[Aankomsttijd]"
                       dataType="dbTimeStamp2"
                       name="Aankomsttijd"
                       scale="7" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
-                  name="OLE DB Source Error Output">
+                  name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[AankomstId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[AankomstId]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[AankomstId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[AankomstId]"
                       name="AankomstId" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[VluchtId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[VluchtId]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[VluchtId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[VluchtId]"
                       name="VluchtId" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[BaanId]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[BaanId]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[BaanId]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[BaanId]"
                       name="BaanId" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[VluchtidNR]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[VluchtidNR]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[VluchtidNR]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[VluchtidNR]"
                       name="VluchtidNR" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Vliegtuigcode]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Vliegtuigcode]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Vliegtuigcode]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Vliegtuigcode]"
                       name="Vliegtuigcode" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Terminal]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Terminal]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Terminal]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Terminal]"
                       name="Terminal" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Gate]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Gate]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Gate]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Gate]"
                       name="Gate" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Baan]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Baan]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Baan]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Baan]"
                       name="Baan" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Bezetting]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Bezetting]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Bezetting]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Bezetting]"
                       name="Bezetting" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Vracht]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Vracht]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Vracht]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Vracht]"
                       name="Vracht" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Aankomsttijd]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Aankomsttijd]"
                       dataType="dbTimeStamp2"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[Aankomsttijd]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[Aankomsttijd]"
                       name="Aankomsttijd"
                       scale="7" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -440,29 +430,29 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Derived Column"
+              refId="Package\Data Flow Task\Delay"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column"
+              name="Delay"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  refId="Package\Data Flow Task\Delay.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Aankomsttijd]"
+                      refId="Package\Data Flow Task\Delay.Inputs[Derived Column Input].Columns[Aankomsttijd]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="Aankomsttijd"
                       cachedScale="7"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]" />
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Plan_tijd]"
-                      cachedDataType="dbTimeStamp2"
+                      refId="Package\Data Flow Task\Delay.Inputs[Derived Column Input].Columns[Plan_tijd]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
                       cachedName="Plan_tijd"
-                      cachedScale="7"
                       lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]" />
                   </inputColumns>
                   <externalMetadataColumns />
@@ -470,18 +460,18 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  refId="Package\Data Flow Task\Delay.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Data Flow Task\Delay.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Delay]"
+                      refId="Package\Data Flow Task\Delay.Outputs[Derived Column Output].Columns[Delay]"
                       dataType="i4"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Delay]"
+                      lineageId="Package\Data Flow Task\Delay.Outputs[Derived Column Output].Columns[Delay]"
                       name="Delay"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -489,7 +479,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]}) &lt; -1000 ? 1440 + ([DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]})) : [DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]})</property>
+                          name="Expression">[DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]}) &lt; -1000 ? 1440 + ([DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]})) : [DATEDIFF]("minute",(DT_DBTIME)#{Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]},(DT_DBTIME)#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]})</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -502,23 +492,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  refId="Package\Data Flow Task\Delay.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Data Flow Task\Delay.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\Delay.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\Delay.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\Delay.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\Delay.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -583,7 +573,7 @@ where [refTable].[OLTP_Banen_ID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\552:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -596,8 +586,8 @@ where [refTable].[OLTP_Banen_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Baan_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -610,7 +600,7 @@ where [refTable].[OLTP_Banen_ID] = ?</property>
                       refId="Package\Data Flow Task\Lookup Baan_ID.Inputs[Lookup Input].Columns[BaanId]"
                       cachedDataType="i4"
                       cachedName="BaanId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[BaanId]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -636,11 +626,11 @@ where [refTable].[OLTP_Banen_ID] = ?</property>
                   synchronousInputId="Package\Data Flow Task\Lookup Baan_ID.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Lookup_Baan_ID]"
+                      refId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Baan_ID]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Lookup_Baan_ID]"
-                      name="Lookup_Baan_ID"
+                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Baan_ID]"
+                      name="Baan_ID"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -736,12 +726,12 @@ where [refTable].[OLTP_Aankomst_ID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Aankomst_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Kalender_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Luchthaven_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vliegtuig_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Gate_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Baan_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VluchtSoort_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vlucht_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Aankomst_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Bezetting" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vracht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Aankomsttijd" dataType="DT_DBTIME2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="BeschikbareBezetting" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BeschikbareVracht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vertraging" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Aankomst_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Kalender_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Luchthaven_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vliegtuig_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Gate_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Baan_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VluchtSoort_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vlucht_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Aankomst_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Bezetting" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vracht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Aankomsttijd" dataType="DT_WSTR" length="16" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BeschikbareBezetting" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BeschikbareVracht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vertraging" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\553:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -754,8 +744,8 @@ where [refTable].[OLTP_Aankomst_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup DWH_Aankomst.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -768,7 +758,7 @@ where [refTable].[OLTP_Aankomst_ID] = ?</property>
                       refId="Package\Data Flow Task\Lookup DWH_Aankomst.Inputs[Lookup Input].Columns[AankomstId]"
                       cachedDataType="i4"
                       cachedName="AankomstId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[AankomstId]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -791,6 +781,22 @@ where [refTable].[OLTP_Aankomst_ID] = ?</property>
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Data Flow Task\Lookup DWH_Aankomst.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup DWH_Aankomst.Outputs[Lookup Match Output].Columns[Aankomst_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\Lookup DWH_Aankomst.Outputs[Lookup Match Output].Columns[Aankomst_ID]"
+                      name="Aankomst_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Aankomst_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -882,7 +888,7 @@ where [refTable].[Terminal] = ? and [refTable].[Gate] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\554:invalid};#{Package\Data Flow Task\555:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]};#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -895,8 +901,8 @@ where [refTable].[Terminal] = ? and [refTable].[Gate] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Gate_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -910,7 +916,7 @@ where [refTable].[Terminal] = ? and [refTable].[Gate] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Gate"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Gate]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -927,7 +933,7 @@ where [refTable].[Terminal] = ? and [refTable].[Gate] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Terminal"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Terminal]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1053,7 +1059,7 @@ where [refTable].[OLTP_Datum_ID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Kalender_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Datum_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Weer_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDay" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDaySuffix" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TheDayName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfWeekInMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsWeekend" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheISOweek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfWeek" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfWeek" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheWeekOfMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheMonth" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheMonthName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfMonth" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfMonth" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfNextMonth" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfNextMonth" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheQuarter" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfQuarter" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfQuarter" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheISOYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfYear" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfYear" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsLeapYear" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Has53Weeks" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Has53ISOWeeks" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MMYYYY" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style101" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style103" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style112" dataType="DT_STR" length="8" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style120" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="EtmaalgemiddeldeWindsnelheid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HoogsteWindstoot" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EtmaalgemiddeldeTemperatuur" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MinimumTemperatuur" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EtmaalsomNeerslag" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MinimumOpgetredenZicht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Kalender_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Datum_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDay" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDaySuffix" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TheDayName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfWeekInMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheDayOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsWeekend" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheISOweek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfWeek" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfWeek" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheWeekOfMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheMonth" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheMonthName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfMonth" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfMonth" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfNextMonth" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfNextMonth" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheQuarter" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfQuarter" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfQuarter" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheISOYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheFirstOfYear" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TheLastOfYear" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsLeapYear" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Has53Weeks" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Has53ISOWeeks" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MMYYYY" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style101" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style103" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style112" dataType="DT_STR" length="8" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Style120" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="EtmaalgemiddeldeWindsnelheid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HoogsteWindstoot" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EtmaalgemiddeldeTemperatuur" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MinimumTemperatuur" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EtmaalsomNeerslag" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MinimumOpgetredenZicht" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1071,8 +1077,8 @@ where [refTable].[OLTP_Datum_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Kalender_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1229,8 +1235,8 @@ where [refTable].[OLTP_Luchthaven_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Luchthavens_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1331,13 +1337,13 @@ where [refTable].[OLTP_Luchthaven_ID] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [CLEANED].[Vlucht_view]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [cleaned].[Vlucht]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [CLEANED].[Vlucht_view]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [cleaned].[Vlucht]) [refTable]
 where [refTable].[VluchtId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1369,12 +1375,12 @@ where [refTable].[VluchtId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VluchtId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PlanningId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VliegtuigId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LuchthavenId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DatumId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VluchtidNR" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vluchtnr" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Airlinecode" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vliegtuigcode" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="datetime2" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="vluchtsoort" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VluchtId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PlanningId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VliegtuigId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LuchthavenId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DatumId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VluchtidNR" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vluchtnr" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Airlinecode" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Destcode" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vliegtuigcode" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Datum" dataType="DT_WSTR" length="27" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1387,8 +1393,8 @@ where [refTable].[VluchtId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
+                  connectionManagerID="{6DB8B8C7-4625-4D79-A55D-3B330A7828C2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_OLTP]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1401,7 +1407,7 @@ where [refTable].[VluchtId] = ?</property>
                       refId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Inputs[Lookup Input].Columns[VluchtId]"
                       cachedDataType="i4"
                       cachedName="VluchtId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1497,21 +1503,6 @@ where [refTable].[VluchtId] = ?</property>
                           name="CopyFromReferenceColumn">Vluchtnr</property>
                       </properties>
                     </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Outputs[Lookup Match Output].Columns[vluchtsoort]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
-                      length="100"
-                      lineageId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Outputs[Lookup Match Output].Columns[vluchtsoort]"
-                      name="vluchtsoort"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">vluchtsoort</property>
-                      </properties>
-                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1561,13 +1552,25 @@ where [refTable].[VluchtId] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_Planning]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Planning_ID]
+      ,[OLTP_Planning_ID]
+      ,[Vluchtnr]
+      ,[Plan_terminal]
+      ,[Plan_gate]
+      ,cast([Plan_tijd] as time(0)) AS [Plan_tijd]
+  FROM [dbo].[Dim_Planning]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_Planning]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT [Planning_ID]
+      ,[OLTP_Planning_ID]
+      ,[Vluchtnr]
+      ,[Plan_terminal]
+      ,[Plan_gate]
+      ,cast([Plan_tijd] as time(0)) AS [Plan_tijd]
+  FROM [dbo].[Dim_Planning]) [refTable]
 where [refTable].[OLTP_Planning_ID] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1599,7 +1602,7 @@ where [refTable].[OLTP_Planning_ID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vluchtnr" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_terminal" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_gate" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_tijd" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OLTP_Planning_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Vluchtnr" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_terminal" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_gate" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Plan_tijd" dataType="DT_WSTR" length="8" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1617,8 +1620,8 @@ where [refTable].[OLTP_Planning_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Planning_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1671,11 +1674,11 @@ where [refTable].[OLTP_Planning_ID] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]"
-                      dataType="dbTimeStamp2"
+                      dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
+                      length="8"
                       lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]"
                       name="Plan_tijd"
-                      scale="7"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -1712,165 +1715,6 @@ where [refTable].[OLTP_Planning_ID] = ?</property>
                       refId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup Vliegtuigsoort_ID"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Dim_VluchtSoort]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Dim_VluchtSoort]) [refTable]
-where [refTable].[Soort_vlucht] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VluchtSoort_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Soort_vlucht" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\556:invalid};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input].Columns[vluchtsoort]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="vluchtsoort"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[vluchtsoort]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">Soort_vlucht</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Match Output].Columns[Lookup_VluchtSoort_ID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Match Output].Columns[Lookup_VluchtSoort_ID]"
-                      name="Lookup_VluchtSoort_ID"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">VluchtSoort_ID</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1935,7 +1779,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow Task\557:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[VliegtuigId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1948,8 +1792,8 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup Vliegtuig_ID.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -2222,8 +2066,8 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  connectionManagerID="{8184ED1A-632D-45C6-903C-DE13F46AA078}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OLEDB_DWH]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2255,24 +2099,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Aankomsttijd]"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Aankomsttijd]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Kalender_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_Kalender_ID"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Kalender_ID]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Kalender_ID]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Luchthaven_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_Luchthaven_ID"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_ID]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Luchthaven_ID]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Vliegtuig_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_Vliegtuig_ID"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_ID]"
-                      lineageId="Package\Data Flow Task\Lookup Vliegtuig_ID.Outputs[Lookup Match Output].Columns[Lookup_Vliegtuig_ID]" />
-                    <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Planning_ID]"
                       cachedDataType="i4"
                       cachedName="Lookup_Planning_ID"
@@ -2284,18 +2110,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedName="Lookup_Gate_ID"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gate_ID]"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Gate_ID]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Baan_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_Baan_ID"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Baan_ID]"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Baan_ID]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_VluchtSoort_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_VluchtSoort_ID"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VluchtSoort_ID]"
-                      lineageId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Match Output].Columns[Lookup_VluchtSoort_ID]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AankomstId]"
                       cachedDataType="i4"
@@ -2326,6 +2140,30 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedName="Delay"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vertraging]"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Delay]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Baan_ID]"
+                      cachedDataType="i4"
+                      cachedName="Baan_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Baan_ID]"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Baan_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Kalender_ID]"
+                      cachedDataType="i4"
+                      cachedName="Lookup_Kalender_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Kalender_ID]"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Kalender_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Luchthaven_ID]"
+                      cachedDataType="i4"
+                      cachedName="Lookup_Luchthaven_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Luchthaven_ID]"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Luchthaven_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Lookup_Vliegtuig_ID]"
+                      cachedDataType="i4"
+                      cachedName="Lookup_Vliegtuig_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vliegtuig_ID]"
+                      lineageId="Package\Data Flow Task\Lookup Vliegtuig_ID.Outputs[Lookup Match Output].Columns[Lookup_Vliegtuig_ID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2358,10 +2196,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       dataType="i4"
                       name="Baan_ID" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VluchtSoort_ID]"
-                      dataType="i4"
-                      name="VluchtSoort_ID" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Vlucht_ID]"
                       dataType="i4"
                       name="Vlucht_ID" />
@@ -2379,9 +2213,9 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       name="Vracht" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Aankomsttijd]"
-                      dataType="dbTime2"
-                      name="Aankomsttijd"
-                      scale="7" />
+                      dataType="wstr"
+                      length="16"
+                      name="Aankomsttijd" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BeschikbareBezetting]"
                       dataType="i4"
@@ -2435,10 +2269,23 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                   name="Union All Input 1">
                   <inputColumns>
                     <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[AankomstId]"
+                      cachedDataType="i4"
+                      cachedName="AankomstId"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[VluchtId]"
                       cachedDataType="i4"
                       cachedName="VluchtId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]">
                       <properties>
                         <property
                           containsID="true"
@@ -2448,11 +2295,24 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[BaanId]"
+                      cachedDataType="i4"
+                      cachedName="BaanId"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[VluchtidNR]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="VluchtidNR"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtidNR]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtidNR]">
                       <properties>
                         <property
                           containsID="true"
@@ -2466,7 +2326,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Vliegtuigcode"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]">
                       <properties>
                         <property
                           containsID="true"
@@ -2476,37 +2336,11 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[AankomstId]"
-                      cachedDataType="i4"
-                      cachedName="AankomstId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[AankomstId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[BaanId]"
-                      cachedDataType="i4"
-                      cachedName="BaanId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[BaanId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Terminal]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Terminal"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Terminal]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]">
                       <properties>
                         <property
                           containsID="true"
@@ -2520,7 +2354,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Gate"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Gate]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]">
                       <properties>
                         <property
                           containsID="true"
@@ -2533,7 +2367,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Baan]"
                       cachedDataType="i4"
                       cachedName="Baan"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Baan]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Baan]">
                       <properties>
                         <property
                           containsID="true"
@@ -2546,7 +2380,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Bezetting]"
                       cachedDataType="i4"
                       cachedName="Bezetting"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Bezetting]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Bezetting]">
                       <properties>
                         <property
                           containsID="true"
@@ -2559,7 +2393,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Vracht]"
                       cachedDataType="i4"
                       cachedName="Vracht"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vracht]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vracht]">
                       <properties>
                         <property
                           containsID="true"
@@ -2573,7 +2407,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="dbTimeStamp2"
                       cachedName="Aankomsttijd"
                       cachedScale="7"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]">
                       <properties>
                         <property
                           containsID="true"
@@ -2583,16 +2417,16 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Lookup_Baan_ID]"
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Baan_ID]"
                       cachedDataType="i4"
-                      cachedName="Lookup_Baan_ID"
-                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Lookup_Baan_ID]">
+                      cachedName="Baan_ID"
+                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Baan_ID]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Baan_ID]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Baan_ID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -2657,7 +2491,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[PlanningId]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -2672,20 +2506,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Vluchtnr]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[vluchtsoort]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="vluchtsoort"
-                      lineageId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Outputs[Lookup Match Output].Columns[vluchtsoort]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[vluchtsoort]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -2715,37 +2535,10 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Lookup_Planning_ID]"
-                      cachedDataType="i4"
-                      cachedName="Lookup_Planning_ID"
-                      lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Lookup_Planning_ID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Plan_tijd]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="Plan_tijd"
-                      cachedScale="7"
-                      lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Plan_tijd]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Plan_tijd]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Delay]"
                       cachedDataType="i4"
                       cachedName="Delay"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Delay]">
+                      lineageId="Package\Data Flow Task\Manual Planning Privévlucht.Outputs[Derived Column Output].Columns[Delay]">
                       <properties>
                         <property
                           containsID="true"
@@ -2763,10 +2556,23 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                   name="Union All Input 2">
                   <inputColumns>
                     <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[AankomstId]"
+                      cachedDataType="i4"
+                      cachedName="AankomstId"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[AankomstId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[VluchtId]"
                       cachedDataType="i4"
                       cachedName="VluchtId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtId]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtId]">
                       <properties>
                         <property
                           containsID="true"
@@ -2776,11 +2582,24 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[BaanId]"
+                      cachedDataType="i4"
+                      cachedName="BaanId"
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[BaanId]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[VluchtidNR]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="VluchtidNR"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[VluchtidNR]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[VluchtidNR]">
                       <properties>
                         <property
                           containsID="true"
@@ -2794,7 +2613,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Vliegtuigcode"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vliegtuigcode]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vliegtuigcode]">
                       <properties>
                         <property
                           containsID="true"
@@ -2804,37 +2623,11 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[AankomstId]"
-                      cachedDataType="i4"
-                      cachedName="AankomstId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[AankomstId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[BaanId]"
-                      cachedDataType="i4"
-                      cachedName="BaanId"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[BaanId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Terminal]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Terminal"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Terminal]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Terminal]">
                       <properties>
                         <property
                           containsID="true"
@@ -2848,7 +2641,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Gate"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Gate]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Gate]">
                       <properties>
                         <property
                           containsID="true"
@@ -2861,7 +2654,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Baan]"
                       cachedDataType="i4"
                       cachedName="Baan"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Baan]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Baan]">
                       <properties>
                         <property
                           containsID="true"
@@ -2874,7 +2667,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Bezetting]"
                       cachedDataType="i4"
                       cachedName="Bezetting"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Bezetting]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Bezetting]">
                       <properties>
                         <property
                           containsID="true"
@@ -2887,7 +2680,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Vracht]"
                       cachedDataType="i4"
                       cachedName="Vracht"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Vracht]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Vracht]">
                       <properties>
                         <property
                           containsID="true"
@@ -2901,7 +2694,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       cachedDataType="dbTimeStamp2"
                       cachedName="Aankomsttijd"
                       cachedScale="7"
-                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output].Columns[Aankomsttijd]">
+                      lineageId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output].Columns[Aankomsttijd]">
                       <properties>
                         <property
                           containsID="true"
@@ -2911,16 +2704,16 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Lookup_Baan_ID]"
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Baan_ID]"
                       cachedDataType="i4"
-                      cachedName="Lookup_Baan_ID"
-                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Lookup_Baan_ID]">
+                      cachedName="Baan_ID"
+                      lineageId="Package\Data Flow Task\Lookup Baan_ID.Outputs[Lookup Match Output].Columns[Baan_ID]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Baan_ID]}</property>
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Baan_ID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -2976,19 +2769,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[PlanningId]"
-                      cachedDataType="i4"
-                      cachedName="PlanningId"
-                      lineageId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Outputs[Lookup Match Output].Columns[PlanningId]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Vluchtnr]"
                       cachedDataType="wstr"
                       cachedLength="50"
@@ -3000,20 +2780,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Vluchtnr]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[vluchtsoort]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="vluchtsoort"
-                      lineageId="Package\Data Flow Task\Lookup OLTP_Vlucht FK.Outputs[Lookup Match Output].Columns[vluchtsoort]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[vluchtsoort]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -3043,10 +2809,23 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
+                      refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Lookup_Planning_ID]"
+                      cachedDataType="i4"
+                      cachedName="Lookup_Planning_ID"
+                      lineageId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output].Columns[Lookup_Planning_ID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[Delay]"
                       cachedDataType="i4"
                       cachedName="Delay"
-                      lineageId="Package\Data Flow Task\Manual Planning Privévlucht.Outputs[Derived Column Output].Columns[Delay]">
+                      lineageId="Package\Data Flow Task\Delay.Outputs[Derived Column Output].Columns[Delay]">
                       <properties>
                         <property
                           containsID="true"
@@ -3072,10 +2851,20 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                   name="Union All Output 1">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]"
+                      name="AankomstId" />
+                    <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[VluchtId]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[VluchtId]"
                       name="VluchtId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]"
+                      name="BaanId" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[VluchtidNR]"
                       dataType="wstr"
@@ -3088,16 +2877,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       length="50"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Vliegtuigcode]"
                       name="Vliegtuigcode" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[AankomstId]"
-                      name="AankomstId" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[BaanId]"
-                      name="BaanId" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Terminal]"
                       dataType="wstr"
@@ -3132,10 +2911,10 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       name="Aankomsttijd"
                       scale="7" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Baan_ID]"
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Baan_ID]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Baan_ID]"
-                      name="Lookup_Baan_ID" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Baan_ID]"
+                      name="Baan_ID" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Gate_ID]"
                       dataType="i4"
@@ -3157,22 +2936,16 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[VliegtuigId]"
                       name="VliegtuigId" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[PlanningId]"
+                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[PlanningId]"
-                      name="PlanningId" />
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]"
+                      name="Lookup_Planning_ID" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Vluchtnr]"
                       dataType="wstr"
                       length="50"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Vluchtnr]"
                       name="Vluchtnr" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[vluchtsoort]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[vluchtsoort]"
-                      name="vluchtsoort" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Kalender_ID]"
                       dataType="i4"
@@ -3183,17 +2956,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
                       dataType="i4"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Luchthaven_ID]"
                       name="Lookup_Luchthaven_ID" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Lookup_Planning_ID]"
-                      name="Lookup_Planning_ID" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Plan_tijd]"
-                      dataType="dbTimeStamp2"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Plan_tijd]"
-                      name="Plan_tijd"
-                      scale="7" />
                     <outputColumn
                       refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Delay]"
                       dataType="i4"
@@ -3207,6 +2969,11 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
           </components>
           <paths>
             <path
+              refId="Package\Data Flow Task.Paths[ADO NET Source Output]"
+              endId="Package\Data Flow Task\Lookup DWH_Aankomst.Inputs[Lookup Input]"
+              name="ADO NET Source Output"
+              startId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[ADO NET Source Output]" />
+            <path
               refId="Package\Data Flow Task.Paths[Derived Column Output]"
               endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
@@ -3215,12 +2982,12 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
               refId="Package\Data Flow Task.Paths[Derived Column Output1]"
               endId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow Task\Manual Planning Privévlucht.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Derived Column Output2]"
               endId="Package\Data Flow Task\Union All.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Manual Planning Privévlucht.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow Task\Delay.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output]"
               endId="Package\Data Flow Task\Lookup Gate_ID.Inputs[Lookup Input]"
@@ -3248,19 +3015,14 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
               startId="Package\Data Flow Task\Lookup Luchthavens_ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output5]"
-              endId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Inputs[Lookup Input]"
+              endId="Package\Data Flow Task\Delay.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Data Flow Task\Lookup Vliegtuig_ID.Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output6]"
               endId="Package\Data Flow Task\Calculate beschikbare vracht en bezetting.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Data Flow Task\Lookup Vliegtuigsoort_ID.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow Task.Paths[Lookup Match Output7]"
-              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow Task\Lookup Vliegtuig_ID.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
               endId="Package\Data Flow Task\Lookup Baan_ID.Inputs[Lookup Input]"
@@ -3271,11 +3033,6 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
               endId="Package\Data Flow Task\Manual Planning Privévlucht.Inputs[Derived Column Input]"
               name="Lookup No Match Output"
               startId="Package\Data Flow Task\Lookup Planning_ID.Outputs[Lookup No Match Output]" />
-            <path
-              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task\Lookup DWH_Aankomst.Inputs[Lookup Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task\CLEAN_Aankomst.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Union All Output 1]"
               endId="Package\Data Flow Task\Lookup Vliegtuig_ID.Inputs[Lookup Input]"
@@ -3298,7 +3055,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Fact_Aankomst" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -3330,35 +3087,35 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
           Id="Package\Data Flow Task"
           TopLeft="130.000000794728,131.784315126018" />
         <NodeLayout
-          Size="119.2,41.6"
+          Size="120,41.6"
           Id="Package\Truncate"
           TopLeft="132.499994734923,12.1333334297604" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="214.899994734923,53.7333334297604">
+          TopLeft="192.499994734923,53.7333334297604">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-9.69999394019493,78.0509816962579"
+              EndConnector="12.700006059805,78.0509816962576"
               Start="0,0"
-              End="-9.69999394019493,70.5509816962579">
+              End="12.700006059805,70.5509816962576">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.025490848129" />
+                    End="0,35.0254908481288" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.025490848129"
-                    Point2="0,39.025490848129"
-                    Point3="-4,39.025490848129" />
+                    Point1="0,35.0254908481288"
+                    Point2="0,39.0254908481288"
+                    Point3="4,39.0254908481288" />
                   <mssgle:LineSegment
-                    End="-5.69999394019493,39.025490848129" />
+                    End="8.70000605980499,39.0254908481288" />
                   <mssgle:CubicBezierSegment
-                    Point1="-5.69999394019493,39.025490848129"
-                    Point2="-9.69999394019493,39.025490848129"
-                    Point3="-9.69999394019493,43.025490848129" />
+                    Point1="8.70000605980499,39.0254908481288"
+                    Point2="12.700006059805,39.0254908481288"
+                    Point3="12.700006059805,43.0254908481288" />
                   <mssgle:LineSegment
-                    End="-9.69999394019493,70.5509816962579" />
+                    End="12.700006059805,70.5509816962576" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3378,122 +3135,54 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="186.397959096786,1330.66974796044" />
+          TopLeft="189.969387729036,1332.1991597466" />
         <NodeLayout
           Size="173.6,41.6"
           Id="Package\Data Flow Task\Lookup Vliegtuig_ID"
-          TopLeft="189.9,1021.5" />
+          TopLeft="193.47142863225,1016.91176464153" />
         <NodeLayout
           Size="192,41.6"
           Id="Package\Data Flow Task\Lookup Luchthavens_ID"
-          TopLeft="180.7,615.099999999999" />
+          TopLeft="184.27142863225,616.629411786154" />
         <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Data Flow Task\Derived Column"
-          TopLeft="340.81633233468,829.310927617803" />
+          Size="104.8,41.6"
+          Id="Package\Data Flow Task\Delay"
+          TopLeft="344.38776096693,830.840339403958" />
         <NodeLayout
           Size="192,41.6"
           Id="Package\Data Flow Task\Lookup DWH_Aankomst"
-          TopLeft="180.7,107.1" />
+          TopLeft="184.27142863225,108.629411786155" />
         <NodeLayout
           Size="210.4,41.6"
           Id="Package\Data Flow Task\Manual Planning Privévlucht"
-          TopLeft="7.54081636128565,819.39243699011" />
+          TopLeft="11.1122449935353,820.921848776265" />
         <NodeLayout
           Size="191.2,41.6"
           Id="Package\Data Flow Task\Lookup OLTP_Vlucht FK"
-          TopLeft="181.1,411.9" />
+          TopLeft="184.67142863225,413.429411786155" />
         <NodeLayout
           Size="172.8,41.6"
           Id="Package\Data Flow Task\Lookup Planning_ID"
-          TopLeft="190.3,716.699999999999" />
+          TopLeft="193.87142863225,718.229411786154" />
         <NodeLayout
           Size="154.4,41.6"
           Id="Package\Data Flow Task\Lookup Gate_ID"
-          TopLeft="199.5,310.3" />
-        <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\Data Flow Task\CLEAN_Aankomst"
-          TopLeft="195.9,5.49999999999995" />
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Data Flow Task\Union All"
-          TopLeft="291.836739663828,919.983197797011" />
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\Data Flow Task\Lookup Vliegtuigsoort_ID"
-          TopLeft="178.3,1123.1" />
+          TopLeft="203.07142863225,311.829411786155" />
         <NodeLayout
           Size="174.4,41.6"
           Id="Package\Data Flow Task\Lookup Kalender_ID"
-          TopLeft="189.5,513.5" />
+          TopLeft="193.07142863225,515.029411786155" />
         <NodeLayout
           Size="274.4,41.6"
           Id="Package\Data Flow Task\Calculate beschikbare vracht en bezetting"
-          TopLeft="138.055100980792,1218.14537805933" />
+          TopLeft="141.626529613042,1219.67478984549" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Data Flow Task\Lookup Baan_ID"
-          TopLeft="198.7,208.7" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Union All Output 1]"
-          TopLeft="351.836739663828,961.583197797011">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-75.1367396638275,59.9168022029883"
-              Start="0,0"
-              End="-75.1367396638275,52.4168022029883">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9584011014941" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.9584011014941"
-                    Point2="0,29.9584011014941"
-                    Point3="-4,29.9584011014941" />
-                  <mssgle:LineSegment
-                    End="-71.1367396638275,29.9584011014941" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-71.1367396638275,29.9584011014941"
-                    Point2="-75.1367396638275,29.9584011014941"
-                    Point3="-75.1367396638275,33.9584011014941" />
-                  <mssgle:LineSegment
-                    End="-75.1367396638275,52.4168022029883" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="276.7,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="202.27142863225,210.229411786155" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup No Match Output1]"
-          TopLeft="249.233333333333,758.299999999999">
+          TopLeft="252.804761965583,759.829411786154">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3529,91 +3218,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
-          TopLeft="276.7,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,20.4453125,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Match Output7]"
-          TopLeft="304.166666666667,758.299999999999">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="113.049665668013,71.010927617804"
-              Start="0,0"
-              End="113.049665668013,63.510927617804">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.7952568872196" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.7952568872196"
-                    Point2="0,28.7952568872196"
-                    Point3="4,28.7952568872196" />
-                  <mssgle:LineSegment
-                    End="109.049665668013,28.7952568872196" />
-                  <mssgle:CubicBezierSegment
-                    Point1="109.049665668013,28.7952568872196"
-                    Point2="113.049665668013,28.7952568872196"
-                    Point3="113.049665668013,32.7952568872196" />
-                  <mssgle:LineSegment
-                    End="113.049665668013,63.510927617804" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="8.33344611525664,33.7952568872196,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Match Output6]"
-          TopLeft="275.977550490396,1164.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53.4453780593344"
-              Start="0,0"
-              End="0,45.9453780593344">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.9453780593344" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,17.1680015296672,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Lookup Match Output5]"
-          TopLeft="276.7,1063.1">
+          TopLeft="280.27142863225,150.229411786155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3631,13 +3236,49 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              BoundingBox="-55.80638671875,20.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output5]"
+          TopLeft="307.738095298916,759.829411786154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.0496656680133,71.010927617804"
+              Start="0,0"
+              End="89.0496656680133,63.510927617804">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.7952568872196" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.7952568872196"
+                    Point2="0,28.7952568872196"
+                    Point3="4,28.7952568872196" />
+                  <mssgle:LineSegment
+                    End="85.0496656680133,28.7952568872196" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.0496656680133,28.7952568872196"
+                    Point2="89.0496656680133,28.7952568872196"
+                    Point3="89.0496656680133,32.7952568872196" />
+                  <mssgle:LineSegment
+                    End="89.0496656680133,63.510927617804" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-3.66655388474336,33.7952568872196,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output4]"
-          TopLeft="276.7,656.699999999999">
+          TopLeft="280.27142863225,658.229411786154">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3661,7 +3302,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output3]"
-          TopLeft="276.7,555.1">
+          TopLeft="280.27142863225,556.629411786155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3685,7 +3326,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output2]"
-          TopLeft="276.7,453.5">
+          TopLeft="280.27142863225,455.029411786155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3709,7 +3350,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output1]"
-          TopLeft="276.7,351.9">
+          TopLeft="280.27142863225,353.429411786155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3733,18 +3374,18 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="276.7,250.3">
+          TopLeft="280.27142863225,251.829411786155">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3756,76 +3397,8 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output2]"
-          TopLeft="112.740816361286,860.99243699011">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="220.429256635875,58.9907608069005"
-              Start="0,0"
-              End="220.429256635875,51.4907608069005">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.9287399514543" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.9287399514543"
-                    Point2="0,34.9287399514543"
-                    Point3="4,34.9287399514543" />
-                  <mssgle:LineSegment
-                    End="216.429256635875,34.9287399514543" />
-                  <mssgle:CubicBezierSegment
-                    Point1="216.429256635875,34.9287399514543"
-                    Point2="220.429256635875,34.9287399514543"
-                    Point3="220.429256635875,38.9287399514543" />
-                  <mssgle:LineSegment
-                    End="220.429256635875,51.4907608069005" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="417.21633233468,870.910927617803">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-46.7129260041854,49.072270179208"
-              Start="0,0"
-              End="-46.7129260041854,41.572270179208">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.0559494482152" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.0559494482152"
-                    Point2="0,29.0559494482152"
-                    Point3="-4,29.0559494482152" />
-                  <mssgle:LineSegment
-                    End="-42.7129260041854,29.0559494482152" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-42.7129260041854,29.0559494482152"
-                    Point2="-46.7129260041854,29.0559494482152"
-                    Point3="-46.7129260041854,33.0559494482152" />
-                  <mssgle:LineSegment
-                    End="-46.7129260041854,41.572270179208" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="273.426530038789,1259.74537805933">
+          TopLeft="276.997958671039,1261.27478984549">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3843,6 +3416,150 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Data Flow Task\CLEAN_Aankomst"
+          TopLeft="200.00000340598,6.11764714462124" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[ADO NET Source Output]"
+          TopLeft="280.535716019115,47.7176471446212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.9117646415341"
+              Start="0,0"
+              End="0,53.4117646415341">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.4117646415341" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Data Flow Task\Union All"
+          TopLeft="212.857146482079,929.235295930123" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output1]"
+          TopLeft="116.312244993535,862.521848776265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.878234821877,66.7134471538578"
+              Start="0,0"
+              End="137.878234821877,59.2134471538578">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5013831832053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5013831832053"
+                    Point2="0,39.5013831832053"
+                    Point3="4,39.5013831832053" />
+                  <mssgle:LineSegment
+                    End="133.878234821877,39.5013831832053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.878234821877,39.5013831832053"
+                    Point2="137.878234821877,39.5013831832053"
+                    Point3="137.878234821877,43.5013831832053" />
+                  <mssgle:LineSegment
+                    End="137.878234821877,59.2134471538578" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output2]"
+          TopLeft="396.78776096693,872.440339403958">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-105.263947818185,56.7949565261648"
+              Start="0,0"
+              End="-105.263947818185,49.2949565261648">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.628592679966" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.628592679966"
+                    Point2="0,33.628592679966"
+                    Point3="-4,33.628592679966" />
+                  <mssgle:LineSegment
+                    End="-101.263947818185,33.628592679966" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-101.263947818185,33.628592679966"
+                    Point2="-105.263947818185,33.628592679966"
+                    Point3="-105.263947818185,37.628592679966" />
+                  <mssgle:LineSegment
+                    End="-105.263947818185,49.2949565261648" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Union All Output 1]"
+          TopLeft="276.564287557164,970.835295930123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.0764687114111"
+              Start="0,0"
+              End="0,38.5764687114111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5764687114111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output6]"
+          TopLeft="279.548979122646,1058.51176464153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,161.163025203951"
+              Start="0,0"
+              End="0,153.663025203951">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,153.663025203951" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,71.0268251019755,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3867,7 +3584,20 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Vliegtuig]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -3877,7 +3607,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3887,7 +3617,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3900,7 +3630,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3910,7 +3640,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3923,17 +3653,17 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[CLEANED].[Vlucht_view]</Value>
+          type="q3:string">[cleaned].[Vlucht]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">1</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3946,17 +3676,17 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Dim_Planning]</Value>
+          type="q3:string"></Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3969,7 +3699,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3979,43 +3709,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\CLEAN_Aankomst">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Lookup Vliegtuigsoort_ID">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Dim_VluchtSoort]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4028,7 +3722,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4038,7 +3732,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4051,7 +3745,7 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4061,8 +3755,16 @@ where [refTable].[OLTP_Vliegtuig_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\CLEAN_Aankomst">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>

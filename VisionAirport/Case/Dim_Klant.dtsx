@@ -7,12 +7,12 @@
   DTS:CreatorName="ORDINA\SaRu"
   DTS:DTSID="{9314DF71-BDBF-465C-A846-02B9B92694E3}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="2067"
   DTS:ObjectName="Dim_Klant"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{BC936DA1-7A22-4966-9886-43014A31E6F4}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{04851C0B-BE91-4651-BA39-AD4B8DD81115}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE Fact_Vertrek ADD CONSTRAINT  FK_Fact_Vertrek_Dim_Klant FOREIGN KEY(Klant_ID) REFERENCES Dim_Klant(Klant_ID)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -47,7 +47,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="INSERT INTO Dim_Klant(&#xA;   &#x9; [OLTP_Klant_ID]&#xA;    &#x9; ,[VluchtidNr]&#xA;      &#x9;,[Operatie]&#xA;     &#x9; ,[Faciliteiten]&#xA;     &#x9; ,[Shops])&#xA;VALUES(&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;-1)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -67,155 +67,132 @@
           <components>
             <component
               refId="Package\Full Load Dim_Klant\DW Dim_Klant"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="DW Dim_Klant"
               usesDispositions="true"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Dim_Klant]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Dim_Klant"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Connections[OleDbConnection]"
-                  connectionManagerID="{069104F6-C19E-469C-AD6E-E9CEB9255C89}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Connections[IDbConnection]"
+                  connectionManagerID="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_DWH]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
+                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input]"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
-                  name="OLE DB Destination Input">
+                  name="ADO NET Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[Operatie]"
-                      cachedDataType="r8"
-                      cachedName="Operatie"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Operatie]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Operatie]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[Faciliteiten]"
-                      cachedDataType="r8"
-                      cachedName="Faciliteiten"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Faciliteiten]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Faciliteiten]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[Shops]"
-                      cachedDataType="r8"
-                      cachedName="Shops"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Shops]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Shops]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[KlantId]"
-                      cachedDataType="i4"
-                      cachedName="KlantId"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Klant_ID]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[KlantId]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].Columns[VluchtidNR]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].Columns[VluchtidNR]"
                       cachedDataType="i4"
                       cachedName="VluchtidNR"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[VluchtidNr]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtidNR]" />
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[VluchtidNr]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[VluchtidNR]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].Columns[Operatie]"
+                      cachedDataType="r8"
+                      cachedName="Operatie"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Operatie]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Operatie]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].Columns[Faciliteiten]"
+                      cachedDataType="r8"
+                      cachedName="Faciliteiten"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Faciliteiten]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Faciliteiten]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].Columns[Shops]"
+                      cachedDataType="r8"
+                      cachedName="Shops"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Shops]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Shops]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].Columns[KlantId]"
+                      cachedDataType="i4"
+                      cachedName="KlantId"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Klant_ID]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[KlantId]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Klant_ID]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Klant_ID]"
                       dataType="i4"
                       name="Klant_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[OLTP_Klant_ID]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Klant_ID]"
                       dataType="i4"
                       name="OLTP_Klant_ID" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Operatie]"
-                      dataType="r8"
-                      name="Operatie" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Faciliteiten]"
-                      dataType="r8"
-                      name="Faciliteiten" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[Shops]"
-                      dataType="r8"
-                      name="Shops" />
-                    <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input].ExternalColumns[VluchtidNr]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[VluchtidNr]"
                       dataType="wstr"
                       length="50"
                       name="VluchtidNr" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Operatie]"
+                      dataType="r8"
+                      name="Operatie" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Faciliteiten]"
+                      dataType="r8"
+                      name="Faciliteiten" />
+                    <externalMetadataColumn
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input].ExternalColumns[Shops]"
+                      dataType="r8"
+                      name="Shops" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input]">
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Klant\DW Dim_Klant.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -225,193 +202,183 @@
             </component>
             <component
               refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
               name="OLTP CLEANED_Klant"
               usesDispositions="true"
-              version="7">
+              version="4">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[CLEANED].[Klant]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
                 <property
                   dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"cleaned"."Klant"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Connections[OleDbConnection]"
-                  connectionManagerID="{88A2AAAE-5AB4-4C3D-B471-73B14839E764}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[OLTP]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Connections[IDbConnection]"
+                  connectionManagerID="{0B5E5886-AE61-4176-AA5E-6F5A102074F1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZ_OLTP]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
+                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[KlantId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[KlantId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[KlantId]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[KlantId]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[KlantId]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[KlantId]"
                       name="KlantId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[VluchtId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[VluchtId]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtId]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[VluchtId]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[VluchtId]"
                       name="VluchtId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtidNR]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[VluchtidNR]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[VluchtidNR]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[VluchtidNR]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[VluchtidNR]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[VluchtidNR]"
                       name="VluchtidNR"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Operatie]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Operatie]"
                       dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Operatie]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Operatie]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Operatie]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Operatie]"
                       name="Operatie"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Faciliteiten]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Faciliteiten]"
                       dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Faciliteiten]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Faciliteiten]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Faciliteiten]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Faciliteiten]"
                       name="Faciliteiten"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Shops]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Shops]"
                       dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Shops]"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].Columns[Shops]"
+                      externalMetadataColumnId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Shops]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].Columns[Shops]"
                       name="Shops"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[KlantId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[KlantId]"
                       dataType="i4"
                       name="KlantId" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[VluchtId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[VluchtId]"
                       dataType="i4"
                       name="VluchtId" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[VluchtidNR]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[VluchtidNR]"
                       dataType="i4"
                       name="VluchtidNR" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Operatie]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Operatie]"
                       dataType="r8"
                       name="Operatie" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Faciliteiten]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Faciliteiten]"
                       dataType="r8"
                       name="Faciliteiten" />
                     <externalMetadataColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output].ExternalColumns[Shops]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output].ExternalColumns[Shops]"
                       dataType="r8"
                       name="Shops" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
-                  name="OLE DB Source Error Output">
+                  name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[KlantId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[KlantId]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[KlantId]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[KlantId]"
                       name="KlantId" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[VluchtId]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[VluchtId]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[VluchtId]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[VluchtId]"
                       name="VluchtId" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[VluchtidNR]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[VluchtidNR]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[VluchtidNR]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[VluchtidNR]"
                       name="VluchtidNR" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Operatie]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Operatie]"
                       dataType="r8"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Operatie]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Operatie]"
                       name="Operatie" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Faciliteiten]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Faciliteiten]"
                       dataType="r8"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Faciliteiten]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Faciliteiten]"
                       name="Faciliteiten" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Shops]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Shops]"
                       dataType="r8"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[Shops]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[Shops]"
                       name="Shops" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -422,10 +389,10 @@
           </components>
           <paths>
             <path
-              refId="Package\Full Load Dim_Klant.Paths[OLE DB Source Output]"
-              endId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[OLE DB Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[OLE DB Source Output]" />
+              refId="Package\Full Load Dim_Klant.Paths[ADO NET Source Output]"
+              endId="Package\Full Load Dim_Klant\DW Dim_Klant.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Full Load Dim_Klant\OLTP CLEANED_Klant.Outputs[ADO NET Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -443,7 +410,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="ALTER TABLE dbo.Fact_Vertrek DROP CONSTRAINT IF EXISTS FK_Fact_Vertrek_Dim_Klant" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -460,7 +427,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{069104F6-C19E-469C-AD6E-E9CEB9255C89}"
+          SQLTask:Connection="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Dim_Klant" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -528,7 +495,7 @@
           Id="Package\Remove FK constraints Dim_Klant"
           TopLeft="7.5,5.49999999999998" />
         <NodeLayout
-          Size="173.6,41.6"
+          Size="200.8,41.6"
           Id="Package\Truncate Table Dim_Klant"
           TopLeft="6.70000000000002,126.3" />
         <EdgeLayout
@@ -537,14 +504,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="13.6,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="13.6,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="9.60000000000002,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.60000000000002,30"
+                    Point2="13.6,30"
+                    Point3="13.6,34" />
+                  <mssgle:LineSegment
+                    End="13.6,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -555,18 +534,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="93.5,167.9">
+          TopLeft="107.1,167.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="-13.6,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="-13.6,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-9.60000000000002,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.60000000000002,30"
+                    Point2="-13.6,30"
+                    Point3="-13.6,34" />
+                  <mssgle:LineSegment
+                    End="-13.6,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -628,27 +619,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\Full Load Dim_Klant\DW Dim_Klant"
-          TopLeft="322.857148355367,259.235297753324" />
-        <NodeLayout
-          Size="165.6,41.6"
+          Size="157.6,41.6"
           Id="Package\Full Load Dim_Klant\OLTP CLEANED_Klant"
-          TopLeft="325.714291261167,155.235296294763" />
+          TopLeft="97.1428587971902,91.14117770393" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Full Load Dim_Klant\DW Dim_Klant"
+          TopLeft="107.142858967489,210.435297024044" />
         <EdgeLayout
-          Id="Package\Full Load Dim_Klant.Paths[OLE DB Source Output]"
-          TopLeft="408.085719808267,196.835296294763">
+          Id="Package\Full Load Dim_Klant.Paths[ADO NET Source Output]"
+          TopLeft="178.34285888234,132.74117770393">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,62.400001458561"
+              EndConnector="0,77.6941193201138"
               Start="0,0"
-              End="0,54.900001458561">
+              End="0,70.1941193201138">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.900001458561" />
+                    End="0,70.1941193201138" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -661,28 +652,18 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Klant\DW Dim_Klant">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Full Load Dim_Klant\OLTP CLEANED_Klant">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Full Load Dim_Klant\DW Dim_Klant">
+    <Properties>
       <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

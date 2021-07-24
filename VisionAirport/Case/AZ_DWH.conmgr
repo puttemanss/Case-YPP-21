@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AZ_DWH"
+  DTS:DTSID="{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=DWH;Persist Security Info=True;Application Name=SSIS-Package1-{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}sql-ypp-2099.database.windows.net.DWH.ypp;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAACewPHKkJVsUl5nP2mZrZ8Gn9becHF2LyW7OP5YceWWdQAAAAAOgAAAAAIAACAAAABIQcU4Ho+KXnB7G+94juy2jRaIAn0Pant373mc7gHzhoAAAADIjuAdufLxJUd6/hcq+muFw6wqoO+ssr0HeI6KJbjzr6r00kn2vGRHlDNU6nlg0dklhMeVRWphcJwVC9/6ZUvgk7DhMsEcPDGkBRB24zR2Si6lYDRkKJN41OqRhZfZ6yVgfwVfFMQvqHWVDhtlmRMKlH1q5tGnsWkCSzoq22d/WUAAAABHkJRKLfvR1p/PF0CCAkjqRZLzT5DsbyEkmk8z8Zu3eeJAi1qiQOpqLmFXE/L2/Yj2GtBoUyhk6C4kVV94SlZm</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
