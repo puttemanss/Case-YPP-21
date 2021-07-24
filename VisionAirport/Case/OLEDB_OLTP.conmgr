@@ -5,10 +5,10 @@
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=db-ypp-2099;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package1-{6DB8B8C7-4625-4D79-A55D-3B330A7828C2}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp1;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=OLTP;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{6DB8B8C7-4625-4D79-A55D-3B330A7828C2}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp1;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAABTh8onzUixK5P4E/h/9iR0uej5WITa5Bg7kbsz3gCqXgAAAAAOgAAAAAIAACAAAAAxfjPnXwqm73SJ9RQYIb1Wblrxz3BQoHa5Iqi/YV90oIAAAAAtwyRMvqO16POv7wFi3uNvGaWPUkqDDED2i0fDrtFeCvHxprgVfK9jqPzySi0fDmBLsXRCinMCwv7aGYjjPq9WXWJyGUPnl2uQQIIzIHjE1fChTQaUseAEnpG7r6IiWTrN6/M31PpqReZ8mSOp0Sp6As10HhBSJEge1h1mzw7jzUAAAADFnr57Vajy7a5hztGsqjrnfQVatTGHv2SLhNKolS5rFc2ooq2XQfceOam8KZi27G9yhKhVzFKEDR/lrG18FeQ3</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAAAAUvvzq9+m1kOxCcPQr+PpS+AMvp0V8f1ZE0CMV/5R5wAAAAAOgAAAAAIAACAAAAAJyIQY98Eg1FbWNirb/Rg780pdShiIFd1tFlzKDuaO8IAAAAAW1NY0PK3lABfnqgawPv9wEKNF5GlPtR3pcFgxVBdsv2mnbgYjoww4+6HpOHn11mddJKmPaptm2CNq9YXP3DkTUym15pcAvWvqo0+9ugRfV2EcQKBQRSJs0GJ7Vlocv17N2f/mdrwGwPTECsNDnYIRbw4Dw7c2dJgYiLo31SNoMkAAAAD1AbJHwYED1CzWVCJLxascHsYE+AQ3n/krTxy9ht97Cyh5tbiSwMIcUy2DOLqLm0VUyvSSi04IzDLyI46H/chn</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

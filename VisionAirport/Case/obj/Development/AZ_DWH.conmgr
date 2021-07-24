@@ -8,7 +8,7 @@
       DTS:ConnectionString="Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=DWH;Persist Security Info=True;Application Name=SSIS-Package1-{55AD9989-5A6C-48BB-95D5-9BB8DCB86A28}sql-ypp-2099.database.windows.net.DWH.ypp;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAAAmMh5CEYfemUZcPNz/AqFq+wu3XqLaj1QEVrJAuS+oywAAAAAOgAAAAAIAACAAAAA5PlmAN93ECScKacTKiWegn9bRrbeQ12UdVllHcWbwRoAAAABBGBD0Hz0nvbKCqyP/O0LVB16pV6FuQ8IuVnKbRZNaNIBDuZcOMqSHZ/jdEXgez8KsEMdNJg0GKZeQk5nlunFgtl4a7MwpaXMM2ouwI5te1cXezq2b+9B85YkWCWHdHNfYzv1b+JET8j1bhfz8MYaJkaJbKIcss/H87XmM2ntLR0AAAADLOJHqJpqNbiIIQRWQDIjblW4LyBLqJr3n3BseLmYJGNWrnu1CPqHkeHYmeHMAP3rsA0bNPNqiu4jfMrGFCny+</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAAB+G3Ytge2RSFR8+R/BvxGNrhx3ipirUIOo73M/rWd9kgAAAAAOgAAAAAIAACAAAACgI5IbhRlOLJgWl66hpSLbKe+q6P8uo18T/eaNNg7SC4AAAACSeO7N7942FFpMBo/OvaCqrwEpRc5q0JrUDb4Rn9LpqqQ2iFlv0YZJ9R2rbDN9Ffv18bUkpLis56kyeT1FiyFN0ptikR0OuLgj161Sy6BLktaencuYQm9Hkw2FDmniy6pwhUFagGlPvddFuLGU+gf/5xVf6tmQJ8o+wa09uwIBtEAAAACcePOv8eyHwtvdA24wbyzoZzoAUSnL82hZr6I8DpEyt45PO1CITONhcazmb4uDBAcFEBgo0cyykqaSLgDBv8dB</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

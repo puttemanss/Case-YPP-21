@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CP78718</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAAClBEXA8glc5qoL79hcnCSb3SrKejHDsHiuDU8b2Q0AnQAAAAAOgAAAAAIAACAAAABAvPLCSL5dYQnLSQA2nye342ytpvyb7omBz4I29OTAfZAAAADcwizy4k9jKvJafkeoEZqbX6mum/qhoC1XNXDcv/L1Tgz/+J2TIszMEWvBJpnYMsMXitEBFkbJn/ETASjSpM1pjnylTsWOyOoEHsTwiAesiK95gN77+lo51TLT1WW1jL7LDL4aQFivVHD4wZmAoskxAGvR5kO0q9kRDpj3HuMaqB9vY2m7UcJtXBZiVvkSjvBAAAAAb/BGEOEt6PgqkzlZ20JWY97yx85+fLA7STbbiLGa/xqG4njhTUprzaCuUfBvCtE4aS3gsE6EQ0qTBk+jafaKZQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE635JvXgYkaDr/ZAJZpYMQAAAAACAAAAAAAQZgAAAAEAACAAAADS7gY42+ouBNb54puej1oA+rw1gLKk7Mr7Novu6I+oygAAAAAOgAAAAAIAACAAAAAjzPR/olgJVdQrb+dlLb2QWP/MdmRiJqygDafjCrwM1JAAAAAssq8tTgPI1y9qDcRxNQSkv9G97D5UpRrq1m0VTB9nzSbigEsQSxLYSH450fZGdT6hdu/4NSMVcp/Y2/xX/2741CWaWL2H2zUo3K07aUyT47NvABO+1oPFfQqZ4FbGBUrKGeW/MQL3kbepjQB2Cli7cXm62WOsNb8rJiQh/uXcSlAVrYR7ZFdOhacIeW2l91lAAAAADJqQ5CrBOf8cVjqpWqpyS9Qq2aT95EObI33hHWDCD7LtCaXOzIXT4hEAEaduHhWbI0mgg9Z09mWP3BbN2xL58Q==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -75,7 +75,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=db-ypp-2099;Persist Security Info=True;Application Name=SSIS-Package1-{0B5E5886-AE61-4176-AA5E-6F5A102074F1}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=OLTP;Persist Security Info=True;Application Name=SSIS-Package1-{0B5E5886-AE61-4176-AA5E-6F5A102074F1}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -105,7 +105,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">db-ypp-2099</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">OLTP</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -313,7 +313,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=db-ypp-2099;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package1-{6DB8B8C7-4625-4D79-A55D-3B330A7828C2}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp1;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=sql-ypp-2099.database.windows.net;User ID=ypp;Initial Catalog=OLTP;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{6DB8B8C7-4625-4D79-A55D-3B330A7828C2}sql-ypp-2099.database.windows.net.db-ypp-2099.ypp1;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -343,7 +343,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">db-ypp-2099</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">OLTP</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -601,10 +601,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4C6FE6FB-B7D7-4EF0-A784-060B95172CB0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6C94AD13-BC9B-4BCD-8145-6B40C468FDE5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

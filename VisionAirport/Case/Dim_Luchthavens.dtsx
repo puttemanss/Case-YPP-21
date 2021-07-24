@@ -11,8 +11,8 @@
   DTS:LocaleID="8192"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{4C6FE6FB-B7D7-4EF0-A784-060B95172CB0}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{6C94AD13-BC9B-4BCD-8145-6B40C468FDE5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -152,32 +152,32 @@
                       externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Altitude]"
                       lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Alt]" />
                     <inputColumn
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[LuchthavenId]"
+                      cachedDataType="i4"
+                      cachedName="LuchthavenId"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[LuchthavenId]" />
+                    <inputColumn
+                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Tz2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Tz2"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_Naam]"
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Tz2]" />
+                    <inputColumn
                       refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[TZ]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="TZ"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_Naam]"
+                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
                       lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[TZ]" />
                     <inputColumn
                       refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[DST]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="DST"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[TijdZone_VerschilUTC]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[DST]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[Tz2]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Tz2"
                       externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[Zomertijd]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[Tz2]" />
-                    <inputColumn
-                      refId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].Columns[LuchthavenId]"
-                      cachedDataType="i4"
-                      cachedName="LuchthavenId"
-                      externalMetadataColumnId="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens.Inputs[ADO NET Destination Input].ExternalColumns[OLTP_Luchthaven_ID]"
-                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[LuchthavenId]" />
+                      lineageId="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens.Outputs[ADO NET Source Output].Columns[DST]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -812,7 +812,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens">
+    design-time-name="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -820,7 +820,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Full Load Dim_Luchthavens\DW Dim_Luchthavens">
+    design-time-name="Package\Full Load Dim_Luchthavens\OLTP CLEANED_Luchthavens">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
